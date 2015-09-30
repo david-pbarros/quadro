@@ -6,7 +6,7 @@ import br.com.dbcorp.quadro.ui.Splash;
 
 public class Main {
 
-	public static int width = 1024;
+	public static int width = 1024;//x
 	public static int height = 768;
 	
 	public static void main(String[] args) {
