@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EscolaB" pageWidth="595" pageHeight="843" columnWidth="565" leftMargin="15" rightMargin="15" topMargin="20" bottomMargin="5" uuid="828aa057-0c1d-431f-9f96-04ea2dd89865">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="56"/>
+	<parameter name="mes" class="java.lang.String"/>
+	<parameter name="caixaTituloMenorTemp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caixaMesTemp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caixaTituloMenor" class="java.awt.Image">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caixaMes" class="java.awt.Image">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<field name="dataReuniao" class="java.util.Date"/>
+	<field name="tpAssembleia" class="java.lang.String"/>
+	<field name="tema1" class="java.lang.String"/>
+	<field name="estudante1" class="java.lang.String"/>
+	<field name="estudante2" class="java.lang.String"/>
+	<field name="estudante3" class="java.lang.String"/>
+	<field name="tema2" class="java.lang.String"/>
+	<field name="tema3" class="java.lang.String"/>
+	<field name="ajudante1" class="java.lang.String"/>
+	<field name="ajudante2" class="java.lang.String"/>
+	<field name="recapitulacao" class="java.lang.Boolean"/>
+	<field name="visita" class="java.lang.Boolean"/>
+	<group name="data">
+		<groupExpression><![CDATA[$F{dataReuniao}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<rectangle>
+					<reportElement uuid="e04b20a0-465f-4447-bf33-79390ca25da5" x="26" y="8" width="505" height="23"/>
+					<graphicElement>
+						<pen lineWidth="1.0" lineColor="#666666"/>
+					</graphicElement>
+				</rectangle>
+				<rectangle>
+					<reportElement uuid="c6969e28-5c91-4739-964b-45dfaca971ed" x="26" y="8" width="502" height="20" backcolor="#999999"/>
+				</rectangle>
+				<rectangle>
+					<reportElement uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5" x="23" y="3" width="502" height="23"/>
+				</rectangle>
+				<rectangle>
+					<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="26" y="6" width="496" height="16"/>
+				</rectangle>
+				<textField pattern="dd/MM" isBlankWhenNull="true">
+					<reportElement uuid="f59a33ac-f166-4878-becb-fddb30732604" x="0" y="7" width="555" height="14"/>
+					<textElement textAlignment="Center">
+						<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dataReuniao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band height="801" splitType="Stretch">
+			<line>
+				<reportElement uuid="f7ec4af8-f357-4fbf-a3f9-9909f59625e9" x="0" y="791" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="11975a3f-128d-4072-b0a0-9a8bc86a3b40" x="-7" y="799" width="569" height="1"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="f29f0072-4ee3-451c-88db-42a84919c251" x="3" y="-4" width="1" height="796"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="c021051f-3982-4830-9074-5bb54e157a09" x="0" y="-2" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="9b055d01-d3c6-4cfa-a4fd-f20fdfe46379" x="562" y="-13" width="1" height="814"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="75054248-dff4-4487-99dc-854fb7082b6e" x="-7" y="-12" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="ff7f767d-25aa-44d4-b468-a1828cf89b3e" x="-7" y="-13" width="1" height="813"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="16529022-01c0-4bad-85b4-8c30f15078d9" x="554" y="-4" width="1" height="796"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<image isUsingCache="false" isLazy="true">
+				<reportElement uuid="4213e2cc-0ddd-4024-99b4-e69d7ebc2135" mode="Transparent" x="83" y="4" width="388" height="76"/>
+				<imageExpression><![CDATA[$P{caixaTituloMenorTemp} == null ? $P{caixaTituloMenor} : $P{caixaTituloMenorTemp}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="8b896c4a-b205-4ebd-8366-c65d17b9f75f" x="83" y="4" width="388" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Perpetua" size="18" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Designação da Escola do Ministério Teocrático]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" isUsingCache="false" isLazy="true">
+				<reportElement uuid="7465cb15-795e-4980-98c8-16090e27569d" x="23" y="49" width="508" height="42"/>
+				<imageExpression><![CDATA[$P{caixaMesTemp} == null ? $P{caixaMes} : $P{caixaMesTemp}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6b3ea930-7c89-4afd-abda-e1ada6b39132" x="1" y="49" width="555" height="34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Perpetua" size="14" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mes} + " - Sala B"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="92" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{tpAssembleia} == null && !$F{recapitulacao} && !$F{visita} && ($F{ajudante2}.length() > 1 || $F{tema3}.length() > 56)]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="727ac869-821d-439d-b2ce-090b846ce0ab" x="26" y="5" width="505" height="87"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#999999"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="e8158705-317a-4141-a6ef-3e39167161d6" x="26" y="5" width="502" height="84" backcolor="#999999"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="e2b4aa21-707c-4a93-93f4-093a21268ffb" x="23" y="0" width="502" height="86"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="99f6e039-b8fd-40c2-9ea8-6663af0f6b70" x="26" y="3" width="496" height="80"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="d2e180d2-12cf-4348-a4b5-8b92ad261cd6" x="154" y="5" width="31" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Nº 1:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d2e180d2-12cf-4348-a4b5-8b92ad261cd6" x="33" y="20" width="31" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Nº 2:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="185" y="5" width="108" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tema1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="74aa26d7-3393-4dd7-bc2f-03b517726716" x="292" y="1" width="19" height="20"/>
+				<textElement markup="none">
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<text><![CDATA[ __ ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" stretchType="RelativeToTallestObject" x="64" y="20" width="282" height="30"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tema2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ceba6147-f29b-4534-8609-2ac250b49d9a" x="346" y="16" width="19" height="20"/>
+				<textElement markup="none">
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<text><![CDATA[ __ ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="365" y="20" width="153" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" isUnderline="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudante2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2969bae-d1d8-4e52-be16-955d62426c71" x="346" y="48" width="19" height="20"/>
+				<textElement markup="none">
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<text><![CDATA[ __ ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" stretchType="RelativeToTallestObject" x="64" y="51" width="282" height="30"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tema3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d2e180d2-12cf-4348-a4b5-8b92ad261cd6" x="33" y="51" width="31" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Nº 3:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="365" y="51" width="152" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" isUnderline="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudante3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="347" y="67" width="170" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ajudante2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="311" y="5" width="188" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" isUnderline="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudante1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="347" y="36" width="171" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ajudante1}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="29">
+			<printWhenExpression><![CDATA[$F{tpAssembleia} != null && !$F{recapitulacao} && !$F{visita}]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="44714e82-4c53-4beb-9f35-2d1ed20dbb42" x="26" y="6" width="505" height="23"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#999999"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="b72b927b-2b09-4eea-814e-78be16279bdb" x="26" y="6" width="502" height="20" backcolor="#999999"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="84046384-4133-474c-b488-139a8ec98595" x="23" y="1" width="502" height="23"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="30976310-f867-47f2-853d-5b21cdd8a753" x="26" y="4" width="496" height="16"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="e7d38aa5-b451-46be-8025-8c1a6e7c24f0" x="-1" y="5" width="565" height="14"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpAssembleia}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="29">
+			<printWhenExpression><![CDATA[$F{recapitulacao}]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="727ac869-821d-439d-b2ce-090b846ce0ab" x="26" y="6" width="505" height="23"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#999999"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="e8158705-317a-4141-a6ef-3e39167161d6" x="26" y="6" width="502" height="20" backcolor="#999999"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="e2b4aa21-707c-4a93-93f4-093a21268ffb" x="23" y="1" width="502" height="23"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="99f6e039-b8fd-40c2-9ea8-6663af0f6b70" x="26" y="4" width="496" height="16"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="af18e2a3-584c-4786-8a23-d933886233cb" x="0" y="5" width="565" height="14"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Recapitulação]]></text>
+			</staticText>
+		</band>
+		<band height="29">
+			<printWhenExpression><![CDATA[$F{visita}]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="44714e82-4c53-4beb-9f35-2d1ed20dbb42" x="26" y="6" width="505" height="23"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#999999"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="b72b927b-2b09-4eea-814e-78be16279bdb" x="26" y="6" width="502" height="20" backcolor="#999999"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="84046384-4133-474c-b488-139a8ec98595" x="23" y="1" width="502" height="23"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="30976310-f867-47f2-853d-5b21cdd8a753" x="26" y="4" width="496" height="16"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="5c27868c-a7e0-40d2-966d-5397c1b14333" x="-1" y="5" width="566" height="14"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Visita do Superintendente]]></text>
+			</staticText>
+		</band>
+		<band height="77">
+			<printWhenExpression><![CDATA[$F{tpAssembleia} == null && !$F{recapitulacao} && !$F{visita} && $F{ajudante2}.length() < 1 && $F{tema3}.length() <= 56]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="727ac869-821d-439d-b2ce-090b846ce0ab" x="26" y="5" width="505" height="72"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#999999"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="e8158705-317a-4141-a6ef-3e39167161d6" x="26" y="5" width="502" height="69" backcolor="#999999"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="e2b4aa21-707c-4a93-93f4-093a21268ffb" x="23" y="0" width="502" height="71"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="99f6e039-b8fd-40c2-9ea8-6663af0f6b70" x="26" y="3" width="496" height="65"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="347" y="36" width="171" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ajudante1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="365" y="20" width="153" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" isUnderline="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudante2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" stretchType="RelativeToTallestObject" x="64" y="20" width="282" height="30"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tema2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d2e180d2-12cf-4348-a4b5-8b92ad261cd6" x="154" y="5" width="31" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Nº 1:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ceba6147-f29b-4534-8609-2ac250b49d9a" x="346" y="16" width="19" height="20"/>
+				<textElement markup="none">
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<text><![CDATA[ __ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d2e180d2-12cf-4348-a4b5-8b92ad261cd6" x="33" y="20" width="31" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Nº 2:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="74aa26d7-3393-4dd7-bc2f-03b517726716" x="292" y="1" width="19" height="20"/>
+				<textElement markup="none">
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<text><![CDATA[ __ ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="365" y="51" width="152" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" isUnderline="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudante3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" stretchType="RelativeToTallestObject" x="64" y="51" width="282" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tema3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="311" y="5" width="188" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Perpetua" size="9" isItalic="true" isUnderline="true" pdfFontName="Helvetica-Oblique" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudante1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d2e180d2-12cf-4348-a4b5-8b92ad261cd6" x="33" y="51" width="31" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Nº 3:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8328c914-bb74-4d22-9692-cb92135888a7" x="185" y="5" width="108" height="14"/>
+				<textElement>
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tema1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2969bae-d1d8-4e52-be16-955d62426c71" x="346" y="48" width="19" height="20"/>
+				<textElement markup="none">
+					<font fontName="Perpetua" size="11"/>
+				</textElement>
+				<text><![CDATA[ __ ]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

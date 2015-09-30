@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: . Fontes.jar
+Main-Class: br.com.dbcorp.quadro.Main
+

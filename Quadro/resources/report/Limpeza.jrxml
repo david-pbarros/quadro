@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Limpeza" pageWidth="595" pageHeight="843" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="828aa057-0c1d-431f-9f96-04ea2dd89865">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="caixaTituloMenor" class="java.awt.Image">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caixaMes" class="java.awt.Image">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caixaTituloMenorTemp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caixaMesTemp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<field name="data" class="java.lang.String"/>
+	<field name="grupo" class="java.lang.String"/>
+	<group name="data">
+		<groupExpression><![CDATA[]]></groupExpression>
+		<groupHeader>
+			<band height="44">
+				<rectangle>
+					<reportElement uuid="e04b20a0-465f-4447-bf33-79390ca25da5" x="26" y="5" width="505" height="35"/>
+					<graphicElement>
+						<pen lineWidth="1.0" lineColor="#666666"/>
+					</graphicElement>
+				</rectangle>
+				<rectangle>
+					<reportElement uuid="c6969e28-5c91-4739-964b-45dfaca971ed" x="26" y="5" width="502" height="33" backcolor="#999999"/>
+				</rectangle>
+				<rectangle>
+					<reportElement uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5" x="23" y="0" width="502" height="35"/>
+				</rectangle>
+				<rectangle>
+					<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="26" y="3" width="160" height="29"/>
+				</rectangle>
+				<staticText>
+					<reportElement uuid="7b24df25-6130-4449-9ffd-3c52b1b97f4e" x="27" y="5" width="159" height="25"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Perpetua" size="14" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Dias:]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="192" y="3" width="330" height="29"/>
+				</rectangle>
+				<staticText>
+					<reportElement uuid="2408cb1b-0342-439d-89b1-22e260247d57" x="195" y="5" width="328" height="25"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Perpetua" size="14" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Grupos Responsáveis]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band height="801" splitType="Stretch">
+			<line>
+				<reportElement uuid="f7ec4af8-f357-4fbf-a3f9-9909f59625e9" x="1" y="792" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="11975a3f-128d-4072-b0a0-9a8bc86a3b40" x="-6" y="800" width="569" height="1"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="f29f0072-4ee3-451c-88db-42a84919c251" x="3" y="-4" width="1" height="796"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="c021051f-3982-4830-9074-5bb54e157a09" x="0" y="-2" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="9b055d01-d3c6-4cfa-a4fd-f20fdfe46379" x="562" y="-13" width="1" height="814"/>
+				<graphicElement>
+					<pen lineWidth="6.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="75054248-dff4-4487-99dc-854fb7082b6e" x="-7" y="-12" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="ff7f767d-25aa-44d4-b468-a1828cf89b3e" x="-7" y="-13" width="1" height="813"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="16529022-01c0-4bad-85b4-8c30f15078d9" x="554" y="-4" width="1" height="796"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</background>
+	<title>
+		<band height="140" splitType="Stretch">
+			<image>
+				<reportElement uuid="4213e2cc-0ddd-4024-99b4-e69d7ebc2135" mode="Transparent" x="83" y="16" width="388" height="82"/>
+				<imageExpression><![CDATA[$P{caixaTituloMenorTemp} == null ? $P{caixaTituloMenor} : $P{caixaTituloMenorTemp}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="8b896c4a-b205-4ebd-8366-c65d17b9f75f" x="83" y="23" width="388" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Perpetua" size="18" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Designação da Limpeza do Salão do Reino]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement uuid="7465cb15-795e-4980-98c8-16090e27569d" x="23" y="80" width="508" height="42"/>
+				<imageExpression><![CDATA[$P{caixaMesTemp} == null ? $P{caixaMes} : $P{caixaMesTemp}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="1ebe29db-3866-48fb-bd2f-f1e3dec5b740" x="0" y="87" width="554" height="28"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font fontName="Perpetua" size="16" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[“Pois, consumiu-me o puro zelo pela Tua casa” – Salmos 69:9]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="e04b20a0-465f-4447-bf33-79390ca25da5" x="27" y="6" width="505" height="33"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#666666"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="c6969e28-5c91-4739-964b-45dfaca971ed" x="27" y="6" width="502" height="30" backcolor="#999999"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5" x="24" y="1" width="502" height="33"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="192" y="4" width="331" height="26"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="ef2cefb0-1b51-436b-8ddb-594577bff672" x="192" y="6" width="331" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Perpetua" size="14" isBold="false" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupo}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="27" y="4" width="159" height="26"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d" x="28" y="6" width="158" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Perpetua" size="14" isBold="false" pdfFontName="Helvetica" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="24" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

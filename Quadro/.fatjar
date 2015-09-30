@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Sep 12 20:14:18 BRT 2014
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=C\:\\teste\\Quadro.jar
+manifest.mergeall=true
+manifest.mainclass=br.com.dbcorp.quadro.Main
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=
