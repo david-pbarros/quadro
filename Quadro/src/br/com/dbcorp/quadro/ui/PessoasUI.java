@@ -13,9 +13,9 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
@@ -30,8 +30,6 @@ import br.com.dbcorp.quadro.entidades.Pessoa;
 import br.com.dbcorp.quadro.gerenciador.PessoaGerenciador;
 import br.com.dbcorp.quadro.ui.dialog.PessoaDialog;
 import br.com.dbcorp.quadro.ui.model.PessoaTableModel;
-
-import javax.swing.JComboBox;
 
 public class PessoasUI extends InternalUI implements TableModelListener, ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = -1753463790399252181L;
@@ -141,12 +139,12 @@ public class PessoasUI extends InternalUI implements TableModelListener, ActionL
 	    }
 	}
 	
-	private JScrollPane setTable() {
+	private DScrollPane setTable() {
 		this.table = new JTable();
 		this.table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
 		this.table.getSelectionModel().addListSelectionListener(this);
 		
-		JScrollPane scrollPane = new JScrollPane(this.table);
+		DScrollPane scrollPane = new DScrollPane(this.table);
 		scrollPane.setViewportBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 100));
 		

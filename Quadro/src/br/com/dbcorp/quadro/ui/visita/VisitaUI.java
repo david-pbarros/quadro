@@ -18,7 +18,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
 import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
@@ -28,6 +27,7 @@ import br.com.dbcorp.quadro.entidades.SemanaVisita;
 import br.com.dbcorp.quadro.exceptions.DiaVisitaException;
 import br.com.dbcorp.quadro.gerenciador.VisitaGerenciador;
 import br.com.dbcorp.quadro.report.ReportCommon;
+import br.com.dbcorp.quadro.ui.DScrollPane;
 import br.com.dbcorp.quadro.ui.InternalUI;
 import br.com.dbcorp.quadro.ui.Params;
 
@@ -53,7 +53,7 @@ public class VisitaUI extends InternalUI implements ActionListener, ItemListener
 	private JButton btnPrint;
 	private JButton btnSair;
 	private JPanel mesPanel;
-	private JScrollPane scroll;
+	private DScrollPane scroll;
 	
 	public VisitaUI() {
 		super();
@@ -221,9 +221,9 @@ public class VisitaUI extends InternalUI implements ActionListener, ItemListener
 		if ( this.scroll == null ) {
 			this.mesPanel = new JPanel();
 
-			this.scroll = new JScrollPane();
+			this.scroll = new DScrollPane();
 			this.scroll.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, Params.INTERNAL_HEIGHT-300));
-			this.scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+			this.scroll.setHorizontalScrollBarPolicy(DScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			this.scroll.setViewportView(this.mesPanel);
 			
 			this.containerPanel.add(this.scroll, BorderLayout.CENTER);

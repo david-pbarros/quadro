@@ -16,21 +16,20 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
 
 import br.com.dbcorp.quadro.Log;
 import br.com.dbcorp.quadro.entidades.Limpeza;
 import br.com.dbcorp.quadro.gerenciador.LimpezaGerenciador;
 import br.com.dbcorp.quadro.report.ReportCommon;
 import br.com.dbcorp.quadro.ui.dialog.ReuniaoDialog;
-
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
 
 public class LimpezaUI extends InternalUI implements ActionListener {
 	private static final long serialVersionUID = -5703107302525621155L;
@@ -133,7 +132,7 @@ public class LimpezaUI extends InternalUI implements ActionListener {
 
 		getContentPane().add(containerPanel, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		DScrollPane scrollPane = new DScrollPane();
 		containerPanel.add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();

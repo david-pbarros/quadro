@@ -24,7 +24,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
@@ -43,6 +42,7 @@ import br.com.dbcorp.quadro.entidades.Mes;
 import br.com.dbcorp.quadro.entidades.SemanaVisita;
 import br.com.dbcorp.quadro.entidades.Servico;
 import br.com.dbcorp.quadro.gerenciador.MesGerenciador;
+import br.com.dbcorp.quadro.ui.DScrollPane;
 import br.com.dbcorp.quadro.ui.InternalUI;
 import br.com.dbcorp.quadro.ui.Params;
 import br.com.dbcorp.quadro.ui.dialog.NovoDiaDialog;
@@ -56,7 +56,7 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 	
 	private JTable table;
 	private JPanel diasPanel;
-	private JScrollPane scrollDias;
+	private DScrollPane scrollDias;
 	private JButton btnNovo;
 	private JButton btnRemove;
 	private JButton btnSair;
@@ -109,9 +109,9 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 		
 		this.diasPanel = new JPanel();
 		
-		this.scrollDias = new JScrollPane();
+		this.scrollDias = new DScrollPane();
 		this.scrollDias.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 300));
-		this.scrollDias.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.scrollDias.setHorizontalScrollBarPolicy(DScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.scrollDias.setViewportView(this.diasPanel);
 		this.diasPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 5));
 		
@@ -207,12 +207,12 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 		this.validate();
 	}
 	
-	private JScrollPane setTable() {
+	private DScrollPane setTable() {
 		this.table = new JTable();
 		this.table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
 		this.table.getSelectionModel().addListSelectionListener(this);
 		
-		JScrollPane scrollPane = new JScrollPane(this.table);
+		DScrollPane scrollPane = new DScrollPane(this.table);
 		scrollPane.setViewportBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 50));
 		
