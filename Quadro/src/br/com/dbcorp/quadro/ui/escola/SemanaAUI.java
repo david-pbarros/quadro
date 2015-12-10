@@ -87,9 +87,10 @@ public class SemanaAUI extends SemanaUI {
 		JPanel cbPanel = new JPanel();
 		add(cbPanel, "7, 2, 3, 1, fill, fill");
 		
-		cbPanel.add(cbReca);
-		cbPanel.add(cbAss);
-		cbPanel.add(cbVis);
+		cbPanel.add(this.cbReca);
+		cbPanel.add(this.cbVid);
+		cbPanel.add(this.cbAss);
+		cbPanel.add(this.cbVis);
 		
 		add(new JLabel("N\u00BA"), "3, 4");
 		add(new JLabel("Tema:"), "5, 4, center, default");
@@ -120,10 +121,15 @@ public class SemanaAUI extends SemanaUI {
 	protected void semanaEnabled(boolean valor) {
 		super.semanaEnabled(valor);
 		
-		if (TipoDia.RECAPITULACAO == this.diaReuniao.getTipoDia()) {
+		if (TipoDia.RECAPITULACAO == this.diaReuniao.getTipoDia() || TipoDia.VIDEOS == this.diaReuniao.getTipoDia()) {
 			this.txEstd0.setEnabled(true);
 			this.txDetaque.setEnabled(true);
 		
+			if (TipoDia.VIDEOS == this.diaReuniao.getTipoDia()) {
+				this.txEstd1.setEnabled(true);
+				this.txTema1.setEnabled(true);
+				this.txAju1.setEnabled(true);
+			}
 		} else {
 			this.txEstd0.setEnabled(valor);
 			this.txDetaque.setEnabled(valor);
@@ -154,25 +160,27 @@ public class SemanaAUI extends SemanaUI {
 				this.designacao1.setDia(this.diaReuniao);
 				this.designacao1.setSala("A");
 				
-				this.designacao2 = this.designacao2 == null ? new DesignacaoEscola() : this.designacao2;
-				this.designacao2.setAjudante(this.txAju2.getText());
-				this.designacao2.setEstudante(this.txEstd2.getText());
-				this.designacao2.setTema(this.txTema2.getText());
-				this.designacao2.setNumero(2);
-				this.designacao2.setDia(this.diaReuniao);
-				this.designacao2.setSala("A");
-				
-				this.designacao3 = this.designacao3 == null ? new DesignacaoEscola() : this.designacao3;
-				this.designacao3.setAjudante(this.txAju3.getText());
-				this.designacao3.setEstudante(this.txEstd3.getText());
-				this.designacao3.setTema(this.txTema3.getText());
-				this.designacao3.setNumero(3);
-				this.designacao3.setDia(this.diaReuniao);
-				this.designacao3.setSala("A");
-
 				designacoes.add(this.designacao1);
-				designacoes.add(this.designacao2);
-				designacoes.add(this.designacao3);
+				
+				if (!this.cbVid.isSelected()) {
+					this.designacao2 = this.designacao2 == null ? new DesignacaoEscola() : this.designacao2;
+					this.designacao2.setAjudante(this.txAju2.getText());
+					this.designacao2.setEstudante(this.txEstd2.getText());
+					this.designacao2.setTema(this.txTema2.getText());
+					this.designacao2.setNumero(2);
+					this.designacao2.setDia(this.diaReuniao);
+					this.designacao2.setSala("A");
+					
+					this.designacao3 = this.designacao3 == null ? new DesignacaoEscola() : this.designacao3;
+					this.designacao3.setAjudante(this.txAju3.getText());
+					this.designacao3.setEstudante(this.txEstd3.getText());
+					this.designacao3.setTema(this.txTema3.getText());
+					this.designacao3.setNumero(3);
+					this.designacao3.setDia(this.diaReuniao);
+					this.designacao3.setSala("A");
+					designacoes.add(this.designacao2);
+					designacoes.add(this.designacao3);
+				}
 			}
 					
 			designacoes.add(this.designacao0);

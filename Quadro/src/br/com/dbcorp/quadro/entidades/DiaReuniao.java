@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 @Entity
 public class DiaReuniao implements Comparable<DiaReuniao> {
 	public enum TipoDia {
-		ASSEMBLEIA("A"), RECAPITULACAO("R"), VISITA("V"), SEM_REUNIAO("C"), ESPECIAL_ENVIADOS("E");
+		ASSEMBLEIA("A"), RECAPITULACAO("R"), VISITA("V"), SEM_REUNIAO("C"), ESPECIAL_ENVIADOS("E"), VIDEOS("AV");
 		
 		String sigla;
 		

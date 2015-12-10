@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import br.com.dbcorp.quadro.DataBaseHelper;
 import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
+import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
 import br.com.dbcorp.quadro.entidades.Discurso;
 import br.com.dbcorp.quadro.entidades.Mes;
 import br.com.dbcorp.quadro.entidades.MesesDom;
@@ -202,6 +203,10 @@ public class MesGerenciador extends Gerenciador {
 			dia.setDia(ct.getTime());
 			dia.setQuando(tipo);
 			dias.add(dia);
+			
+			if ("S".equalsIgnoreCase(tipo) && dias.size() == 1) {
+				dia.setTipoDia(TipoDia.VIDEOS);
+			}
 			
 			cd.add(Calendar.DAY_OF_YEAR, 7);
 		}

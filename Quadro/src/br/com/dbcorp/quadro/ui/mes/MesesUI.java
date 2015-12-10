@@ -107,13 +107,16 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 		commandPanel.add(buttonPanel, BorderLayout.WEST);
 		commandPanel.add(sairPanel, BorderLayout.EAST);
 		
-		this.diasPanel = new JPanel();
+		this.diasPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 5));
+		
+		JPanel diasContainer = new JPanel(new BorderLayout(30, 0));
+		diasContainer.add(new JLabel("    Dias de Reunião:"), BorderLayout.NORTH);
+		diasContainer.add(this.diasPanel, BorderLayout.CENTER);
 		
 		this.scrollDias = new DScrollPane();
 		this.scrollDias.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 300));
 		this.scrollDias.setHorizontalScrollBarPolicy(DScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		this.scrollDias.setViewportView(this.diasPanel);
-		this.diasPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 5));
+		this.scrollDias.setViewportView(diasContainer);
 		
 		containerPanel.add(commandPanel, BorderLayout.NORTH);
 		containerPanel.add(this.setTable(), BorderLayout.CENTER);
@@ -196,8 +199,6 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 		this.diasPanel.removeAll();
 		
 		this.diasPanel.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 38 * this.mesSelecionado.getDias().size()));
-		
-		this.diasPanel.add(new JLabel("Dias de Reunião:"));
 		
 		for (DiaReuniao diaReuniao : this.mesSelecionado.getDias()) {
 			this.diasPanel.add(new DiaPanel(diaReuniao));

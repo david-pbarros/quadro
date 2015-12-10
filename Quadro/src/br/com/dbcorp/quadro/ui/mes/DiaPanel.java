@@ -20,13 +20,13 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
-import br.com.dbcorp.quadro.ui.Params;
 
 public class DiaPanel extends JPanel implements ActionListener, DocumentListener {
 	private static final long serialVersionUID = -8126576081462706449L;
 	
 	private JCheckBox chAssembleia;
 	private JCheckBox chRecaptulacao;
+	private JCheckBox chVideos;
 	private JCheckBox chVisita;
 	private JCheckBox chSemReuniao;
 	private DiaReuniao diareuniao;
@@ -46,6 +46,8 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("right:default"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("right:default"),
 				ColumnSpec.decode("1dlu"),
 				ColumnSpec.decode("max(129dlu;default):grow"),},
 			new RowSpec[] {
@@ -55,11 +57,13 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		JLabel lblDia = new JLabel(new SimpleDateFormat("EE - dd").format(diareuniao.getDia()) + ":");
 		this.chAssembleia = new JCheckBox("Assembl\u00E9ia/Congresso");
 		this.chRecaptulacao = new JCheckBox("Recapitula\u00E7\u00E3o");
+		this.chVideos = new JCheckBox("Apresentações");
 		this.chVisita = new JCheckBox("Visita Superintendente");
 		this.chSemReuniao = new JCheckBox("Sem Reuni\u00E3o");
 		
 		this.chAssembleia.addActionListener(this);
 		this.chRecaptulacao.addActionListener(this);
+		this.chVideos.addActionListener(this);
 		this.chVisita.addActionListener(this);
 		this.chSemReuniao.addActionListener(this);
 		
@@ -76,8 +80,6 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		add(lblDia, "1, 1");
 		add(this.chSemReuniao, "3, 1");
 		add(this.chVisita, "5, 1");
-		add(this.chAssembleia, "9, 1");
-		add(this.descPanel, "11, 1, left, fill");
 
 		if (TipoDia.ASSEMBLEIA == this.diareuniao.getTipoDia()) {
 			disableChecks(this.chAssembleia);
@@ -92,13 +94,23 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 			
 		} else if (TipoDia.SEM_REUNIAO == this.diareuniao.getTipoDia()) {
 			disableChecks(this.chSemReuniao);
+		
+		} else if (TipoDia.VIDEOS == this.diareuniao.getTipoDia()) {
+			disableChecks(this.chVideos);
 		}
 		
 		if ("S".equalsIgnoreCase(this.diareuniao.getQuando())) {
 			add(this.chRecaptulacao, "7, 1");
+			add(this.chVideos, "9, 1");
+			add(this.chAssembleia, "11, 1");
+			add(this.descPanel, "13, 1, left, fill");
+		
+		} else {
+			add(this.chAssembleia, "9, 1");
+			add(this.descPanel, "11, 1, left, fill");
 		}
 
-		this.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 31));
+		this.setPreferredSize(new Dimension(720, 31));
 	}
 	
 	@Override
@@ -108,6 +120,7 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		this.chRecaptulacao.setEnabled(true);
 		this.chVisita.setEnabled(true);
 		this.chSemReuniao.setEnabled(true);
+		this.chVideos.setEnabled(true);
 		this.chAssembleia.setEnabled(true);
 		
 		if (event.getSource() == this.chAssembleia && this.chAssembleia.isSelected()) {
@@ -126,7 +139,11 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		} else if (event.getSource() == this.chSemReuniao && this.chSemReuniao.isSelected()) {
 			tipo = TipoDia.SEM_REUNIAO;
 			disableChecks(this.chSemReuniao);
-		}
+		
+		} else if (event.getSource() == this.chVideos && this.chVideos.isSelected()) {
+			tipo = TipoDia.VIDEOS;
+			disableChecks(this.chVideos);
+		} 
 		
 		this.diareuniao.setTipoDia(tipo);
 	}
@@ -142,11 +159,13 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		this.chVisita.setEnabled(false);
 		this.chSemReuniao.setEnabled(false);
 		this.chAssembleia.setEnabled(false);
+		this.chVideos.setEnabled(false);
 		
 		this.chAssembleia.setSelected(false);
 		this.chRecaptulacao.setSelected(false);
 		this.chVisita.setSelected(false);
 		this.chSemReuniao.setSelected(false);
+		this.chVideos.setSelected(false);
 		
 		chSelecionado.setSelected(true);
 		chSelecionado.setEnabled(true);

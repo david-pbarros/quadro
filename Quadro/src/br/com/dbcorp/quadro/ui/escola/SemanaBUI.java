@@ -71,9 +71,10 @@ public class SemanaBUI extends SemanaUI {
 		JPanel cbPanel = new JPanel();
 		add(cbPanel, "7, 2, 3, 1, fill, fill");
 		
-		cbPanel.add(cbReca);
-		cbPanel.add(cbAss);
-		cbPanel.add(cbVis);
+		cbPanel.add(this.cbReca);
+		cbPanel.add(this.cbAss);
+		cbPanel.add(this.cbVis);
+		cbPanel.add(this.cbVid);
 		
 		add(new JLabel("N\u00BA"), "3, 4");
 		add(new JLabel("Tema:"), "5, 4, center, default");
@@ -102,7 +103,7 @@ public class SemanaBUI extends SemanaUI {
 	public List<DesignacaoEscola> obterDesignacoes() {
 		List<DesignacaoEscola> designacoes = new ArrayList<DesignacaoEscola>();
 		
-		if (!this.cbAss.isSelected() && !this.cbReca.isSelected() && !this.cbVis.isSelected()) {
+		if (!this.cbAss.isSelected() && !this.cbReca.isSelected() && !this.cbVis.isSelected() && !this.cbVid.isSelected()) {
 			this.designacao1 = this.designacao1 == null ? new DesignacaoEscola() : this.designacao1;
 			this.designacao1.setAjudante(this.txAju1.getText());
 			this.designacao1.setEstudante(this.txEstd1.getText());

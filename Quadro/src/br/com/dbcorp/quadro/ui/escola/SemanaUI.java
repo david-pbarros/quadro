@@ -19,6 +19,7 @@ public abstract class SemanaUI extends JPanel {
 	protected ReadOnlyCheckBox cbReca;
 	protected ReadOnlyCheckBox cbAss;
 	protected ReadOnlyCheckBox cbVis;
+	protected ReadOnlyCheckBox cbVid;
 	protected JTextField txData;
 	protected JTextField txDetaque;
 	protected JTextField txTema1;
@@ -57,6 +58,7 @@ public abstract class SemanaUI extends JPanel {
 		
 		this.cbAss.setSelected(false);
 		this.cbReca.setSelected(false);
+		this.cbVid.setSelected(false);
 		this.cbVis.setSelected(false);
 		
 	}
@@ -89,6 +91,7 @@ public abstract class SemanaUI extends JPanel {
 		this.txData.setColumns(10);
 		
 		this.cbReca = new ReadOnlyCheckBox("Recapitula\u00E7\u00E3o");
+		this.cbVid = new ReadOnlyCheckBox("Apresentações");
 		this.cbAss = new ReadOnlyCheckBox("Ass. / Congr.");
 		this.cbVis = new ReadOnlyCheckBox("Vis. Super.");
 	}
@@ -108,18 +111,19 @@ public abstract class SemanaUI extends JPanel {
 			
 			if (TipoDia.ASSEMBLEIA == this.diaReuniao.getTipoDia()) {
 				this.cbAss.setSelected(true);
-				this.ass();
-				this.semanaEnabled(false);
+				this.setChecks(this.cbAss);
 				
 			} else if (TipoDia.RECAPITULACAO == this.diaReuniao.getTipoDia()) {
 				this.cbReca.setSelected(true);
-				this.recap();
-				this.semanaEnabled(false);
+				this.setChecks(this.cbReca);
 				
 			} else if (TipoDia.VISITA == this.diaReuniao.getTipoDia()) {
 				this.cbVis.setSelected(true);
-				this.vis();
-				this.semanaEnabled(false);
+				this.setChecks(this.cbVis);
+			
+			} else if (TipoDia.VIDEOS == this.diaReuniao.getTipoDia()) {
+				this.cbVid.setSelected(true);
+				this.setChecks(this.cbVid);
 			}
 		}
 	}
@@ -140,21 +144,14 @@ public abstract class SemanaUI extends JPanel {
 		this.limparCampos();
 	}
 	
-	private void recap() {
+	private void setChecks(ReadOnlyCheckBox checkSelecionado) {
 		this.cbVis.setEnabled(false);
 		this.cbAss.setEnabled(false);
-		this.semanaEnabled(false);
-	}
-	
-	private void ass() {
-		this.cbVis.setEnabled(false);
+		this.cbVid.setEnabled(false);
 		this.cbReca.setEnabled(false);
-		this.semanaEnabled(false);
-	}
-	
-	private void vis() {
-		this.cbReca.setEnabled(false);
-		this.cbAss.setEnabled(false);
+		
+		checkSelecionado.setEnabled(true);
+		
 		this.semanaEnabled(false);
 	}
 	
