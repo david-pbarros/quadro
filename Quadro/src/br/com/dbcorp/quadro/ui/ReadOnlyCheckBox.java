@@ -11,10 +11,12 @@ public class ReadOnlyCheckBox extends JCheckBox {
 
 	public ReadOnlyCheckBox() {
 		super();
+		this.setFocusable(false);
 	}
 	
 	public ReadOnlyCheckBox(String label) {
 		super(label);
+		this.setFocusable(false);
 	}
 	
 	public ReadOnlyCheckBox (String text, boolean selected) {
