@@ -10,16 +10,16 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import br.com.dbcorp.quadro.entidades.DiaReuniao;
-import br.com.dbcorp.quadro.entidades.EquipeServico;
-import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
-import br.com.dbcorp.quadro.ui.DTextField;
-import br.com.dbcorp.quadro.ui.ReadOnlyCheckBox;
-
-import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+
+import br.com.dbcorp.quadro.entidades.DiaReuniao;
+import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
+import br.com.dbcorp.quadro.entidades.EquipeServico;
+import br.com.dbcorp.quadro.ui.DTextField;
+import br.com.dbcorp.quadro.ui.ReadOnlyCheckBox;
 
 public class SemanaUI extends JPanel {
 	private static final long serialVersionUID = 8298632485665436526L;
@@ -38,17 +38,17 @@ public class SemanaUI extends JPanel {
 	public SemanaUI(DiaReuniao diaReuniao, EquipeServico equipeServico, List<String> pessoas) {
 		setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("6dlu"),
-				FormFactory.RELATED_GAP_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("6dlu"),},
 			new RowSpec[] {
 				RowSpec.decode("6dlu"),
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
 				RowSpec.decode("6dlu"),}));
 		
 		this.equipeServico = equipeServico == null ? new EquipeServico() : equipeServico;
@@ -84,13 +84,13 @@ public class SemanaUI extends JPanel {
 		indPanel.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("default:grow"),},
 			new RowSpec[] {
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
 		
 		this.txind1 = new DTextField(this.pessoas);
 		this.txind2 = new DTextField(this.pessoas);
@@ -105,11 +105,11 @@ public class SemanaUI extends JPanel {
 		volanPanel.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("default:grow"),},
 			new RowSpec[] {
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
 		
 		this.txVolante1 = new DTextField(this.pessoas);
 		this.txVolante2 = new DTextField(this.pessoas);

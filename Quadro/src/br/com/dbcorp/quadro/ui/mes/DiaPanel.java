@@ -13,14 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
 import br.com.dbcorp.quadro.ui.Params;
-
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
 
 public class DiaPanel extends JPanel implements ActionListener, DocumentListener {
 	private static final long serialVersionUID = -8126576081462706449L;
@@ -38,19 +38,19 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		
 		setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("right:max(30dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("right:default"),
-				FormFactory.RELATED_GAP_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("right:default"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("right:default"),
 				ColumnSpec.decode("1dlu"),
 				ColumnSpec.decode("max(129dlu;default):grow"),},
 			new RowSpec[] {
 				RowSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_ROWSPEC,}));
+				FormSpecs.RELATED_GAP_ROWSPEC,}));
 		
 		JLabel lblDia = new JLabel(new SimpleDateFormat("EE - dd").format(diareuniao.getDia()) + ":");
 		this.chAssembleia = new JCheckBox("Assembl\u00E9ia/Congresso");

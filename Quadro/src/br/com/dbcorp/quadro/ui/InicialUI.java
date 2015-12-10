@@ -4,12 +4,12 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.io.IOException;
 
-import br.com.dbcorp.quadro.gerenciador.Gerenciador;
-
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
+
+import br.com.dbcorp.quadro.gerenciador.Gerenciador;
 
 public class InicialUI extends InternalUI {
 	public InicialUI() {
@@ -22,7 +22,7 @@ public class InicialUI extends InternalUI {
 			getContentPane();
 			getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
 					ColumnSpec.decode("default:grow"),
-					FormFactory.DEFAULT_COLSPEC,
+					FormSpecs.DEFAULT_COLSPEC,
 					ColumnSpec.decode("default:grow"),},
 				new RowSpec[] {
 					RowSpec.decode("default:grow"),
