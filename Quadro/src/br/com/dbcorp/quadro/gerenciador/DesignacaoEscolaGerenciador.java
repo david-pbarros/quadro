@@ -151,11 +151,7 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 								designacoes  = this.obterDesignacaoes(diaReuniao);
 							}
 							
-							if ( !"N".equalsIgnoreCase(campos[TIPO]) ) {
-								diaReuniao.setTipo(campos[TIPO]);
-								this.atualizaDia(diaReuniao);
-								
-							} else {
+							if ("N".equalsIgnoreCase(campos[TIPO]) || "AV".equalsIgnoreCase(campos[TIPO])) {
 								int numero = Integer.parseInt(campos[NUMERO]);
 								
 								DesignacaoEscola designacao = obtemDesignacaoSalaumero(designacoes, campos[SALA], numero);
@@ -186,6 +182,11 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 								pessoa.setGenero(campos[GENERO_ESTUDANTE] == "M" ? Genero.M : Genero.F);
 									
 								pessoasSave.add(pessoa);
+							}
+							
+							if ( !"N".equalsIgnoreCase(campos[TIPO]) || "AV".equalsIgnoreCase(campos[TIPO])) {
+								diaReuniao.setTipo(campos[TIPO]);
+								this.atualizaDia(diaReuniao);
 							}
 						} catch (NoResultException exception) {
 							log.error(exception);
@@ -259,7 +260,7 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 			String[] palavras = original.toLowerCase().split(" ");
 			
 			for (String palavra : palavras) {
-				if (palavra.length() > 3) {
+				if (palavra.length() > 2) {
 					novo.append(palavra.substring(0, 1).toUpperCase())
 						.append(palavra.substring(1));
 					
