@@ -35,7 +35,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 	
 	private DesignacaoEscolaGerenciador gerenciador;
 	
-	private List<SemanaUI> semanas;
+	private List<SemanaMelhoreUI> semanas;
 	private List<DesignacaoEscola> designacaoes;
 	
 	private List<Mes> mesesDesignacoes;
@@ -116,7 +116,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		this.btnPrint.setVisible(false);
 
 		if (this.mesPanel != null) {
-			for (SemanaUI semana : this.semanas) {
+			for (SemanaMelhoreUI semana : this.semanas) {
 				semana.reset();
 			}
 			
@@ -208,7 +208,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 	private void montaMes() {
 		this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		
-		this.semanas = new ArrayList<SemanaUI>();
+		this.semanas = new ArrayList<SemanaMelhoreUI>();
 		this.designacaoes = new ArrayList<DesignacaoEscola>();
 		
 		this.btnSalvar.setVisible(true);
@@ -230,19 +230,19 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		
 		String sala = (String) this.cbSala.getSelectedItem();
 		
-		int semanaHeight = "A".equals(sala) ? 189 : 163;
+		int semanaHeight = "A".equals(sala) ? 290 : 236;
 		
 		for (DiaReuniao diaReuniao : this.diasReuniao) {
-			SemanaUI semana = null;
+			SemanaMelhoreUI semana = null;
 			
 			List<DesignacaoEscola> designacaoEscola = this.gerenciador.obterDesignacaoesPorSala(diaReuniao, sala);
 			this.designacaoes.addAll(designacaoEscola);
 			
 			if ("A".equals(sala)) {
-				semana = new SemanaAUI(designacaoEscola, diaReuniao, this.homens, this.mulheres);
+				semana = new SemanaMelhoreAUI(designacaoEscola, diaReuniao, this.homens, this.mulheres);
 				
 			} else {
-				semana = new SemanaBUI(this.temasSalaB(designacaoEscola), diaReuniao, this.homens, this.mulheres);
+				semana = new SemanaMelhoreBUI(this.temasSalaB(designacaoEscola), diaReuniao, this.homens, this.mulheres);
 			}
 			
 			this.semanas.add(semana);
@@ -275,7 +275,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 	private void salvar() {
 		List<DesignacaoEscola> designacoes = new ArrayList<DesignacaoEscola>();
 		
-		for (SemanaUI semana : this.semanas) {
+		for (SemanaMelhoreUI semana : this.semanas) {
 			designacoes.addAll(semana.obterDesignacoes());
 		}
 		
