@@ -3,7 +3,14 @@ package br.com.dbcorp.quadro.ui;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import javax.swing.JOptionPane;
 import javax.swing.JWindow;
@@ -44,6 +51,8 @@ public class Splash extends JWindow {
 			@Override
 			public void run() {
 				try {
+					verificarInicializacao();
+					
 					Thread.sleep(500);
 					
 					MainFrame mainFrame = new MainFrame(widthScreen, heightScreen, splash);
@@ -75,19 +84,60 @@ public class Splash extends JWindow {
 		int h = dimension.height - this.height;
 		setLocation(w/2, h/2);
 	}
-}
+	
+	public static void verificarInicializacao() throws IOException {
+		Path iniPath = Paths.get(Params.getAppPath() + File.separator + "quadro.ini");
+		Path logPath = Paths.get(Params.getAppPath() + File.separator + "Log");
+		
+		try {
+			Files.createFile(iniPath);
+			preencheIni(Files.newBufferedWriter(iniPath, StandardOpenOption.APPEND), logPath);
+			
+		} catch (FileAlreadyExistsException faex) {
+			System.out.println("Arquivo ini já existente.");
+		}
+				
+		try {
+			Files.createDirectory(logPath);
 
-/*class JPanelWithBackground extends JPanel {
-	private static final long serialVersionUID = -3737552790292607704L;
-	
-	private Image backgroundImage;
-	
-	public JPanelWithBackground(Image img) throws IOException {
-		this.backgroundImage = img;
+		} catch (FileAlreadyExistsException faex) {
+			System.out.println("Diretorio de Log já existente.");
+		}
 	}
 	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(this.backgroundImage, 0, 0, this);
+	private static void preencheIni(BufferedWriter bw, Path logPath) throws IOException {
+		bw.write("[DATABASE]");
+		bw.newLine();
+		bw.write("javax.persistence.jdbc.url=jdbc:sqlite:");
+		
+		String db = JOptionPane.showInputDialog("Caminho do banco de dados:", Params.getAppPath() + File.separator + "quadro.db");
+		
+		bw.write(db.replace("\\", "/"));
+		bw.newLine();
+		bw.write("eclipselink.ddl-generation=create-or-extend-tables");
+		bw.newLine();
+		bw.write("eclipselink.ddl-generation.output-mode=database");
+		bw.newLine();
+		bw.write("javax.persistence.jdbc.driver=org.sqlite.JDBC");
+		bw.newLine();
+		bw.write("javax.persistence.jdbc.user=sa");
+		bw.newLine();
+		bw.write("javax.persistence.jdbc.password=");
+		bw.newLine();
+		bw.write("[LOG]");
+		bw.newLine();
+		bw.write("logType=ERROR");
+		bw.newLine();
+		bw.write("logPath=");
+		
+		String log = JOptionPane.showInputDialog("Caminho do diretorio de logs:", logPath.toString());
+		
+		bw.write(log.replace("\\", "/"));
+		bw.newLine();
+		bw.write("[SINCRONISMO]");
+		bw.newLine();
+		bw.write("server=");
+		bw.write(JOptionPane.showInputDialog("URL do servidor de sincronismo:", "quadro.jwdbcorp.dx.am"));
+		bw.flush();
 	}
-}*/
+}

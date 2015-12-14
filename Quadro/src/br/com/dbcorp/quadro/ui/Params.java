@@ -213,7 +213,7 @@ public class Params {
 		return url;
 	}
 	
-	private static String getAppPath() {
+	public static String getAppPath() {
 		String url = Params.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         File dir = new File(url);
         
