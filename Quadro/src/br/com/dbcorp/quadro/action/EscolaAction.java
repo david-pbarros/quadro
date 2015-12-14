@@ -10,7 +10,7 @@ import br.com.dbcorp.quadro.ui.escola.DesignacoesUI;
 public class EscolaAction extends Action {
 	private static final long serialVersionUID = -1900363790893943261L;
 
-	public static final String NAME_VALUE = "Escola";
+	public static final String NAME_VALUE = "Vida e Ministério";
 
 	//Atalho do menu
 	public static final int KEY_STROKE_MODIFIERS = Event.KEY_ACTION;
@@ -19,7 +19,7 @@ public class EscolaAction extends Action {
 	public static Icon SMALL_ICON_VALUE = null;
 
 	//Descrição do menu
-	public static final String SHORT_DESCRIPTION_VALUE = "Escola do Ministerio Teocrático";
+	public static final String SHORT_DESCRIPTION_VALUE = "Nossa Vida e Ministério Cristão";
 	
 	public EscolaAction(MainFrame mainFrame) {
 		super(NAME_VALUE, mainFrame);

@@ -15,10 +15,6 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import br.com.dbcorp.quadro.Log;
 import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DesignacaoServico;
@@ -41,6 +37,10 @@ import br.com.dbcorp.quadro.report.dto.ServicoDTO;
 import br.com.dbcorp.quadro.report.dto.VisitaDTO;
 import br.com.dbcorp.quadro.report.dto.VisitaServicoDTO;
 import br.com.dbcorp.quadro.ui.Params;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
 public class ReportCommon {
@@ -206,7 +206,7 @@ public class ReportCommon {
 		Collections.sort(mes.getDias());
 		
 		for (DiaReuniao dia : mes.getDias()) {
-			if ("S".equalsIgnoreCase(dia.getQuando()) && (TipoDia.ASSEMBLEIA == dia.getTipoDia() || TipoDia.RECAPITULACAO == dia.getTipoDia() || TipoDia.VISITA == dia.getTipoDia())) {
+			if ("S".equalsIgnoreCase(dia.getQuando()) && (TipoDia.ASSEMBLEIA == dia.getTipoDia() || TipoDia.RECAPITULACAO == dia.getTipoDia() || TipoDia.VISITA == dia.getTipoDia() || TipoDia.VIDEOS == dia.getTipoDia())) {
 				dto = new DesignacaoEscolaDTO();
 				dto.setDataReuniao(dia.getDia());
 				
@@ -217,11 +217,14 @@ public class ReportCommon {
 					
 					dto.setTpAssembleia(tpEspecial);
 				
-				} else if (TipoDia.RECAPITULACAO == dia.getTipoDia()) {
+				} else if (TipoDia.RECAPITULACAO == dia.getTipoDia()  && "B".equals(sala)) {
 					dto.setRecapitulacao(true);
 				
 				} else if (TipoDia.VISITA == dia.getTipoDia()) {
 					dto.setVisita(true);
+				
+				} else if (TipoDia.VIDEOS == dia.getTipoDia() && "B".equals(sala)) {
+					dto.setVideos(true);
 				}
 				
 				designacaoes.add(dto);
@@ -234,23 +237,31 @@ public class ReportCommon {
 						dto.setDataReuniao(designacaoEscola.getDia().getDia());
 					}
 					
-					if (designacaoEscola.getNumero() == 0) {
+					if (designacaoEscola.getNumero() == -1) {
+						dto.setDiscurso(designacaoEscola.getTema());
+						dto.setOrador(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						dto.setRecapitulacao(TipoDia.RECAPITULACAO == dia.getTipoDia());
+					
+					} else if (designacaoEscola.getNumero() == 0) {
+						dto.setOradorJoias(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						dto.setRecapitulacao(TipoDia.RECAPITULACAO == dia.getTipoDia());
+						
+					} else if (designacaoEscola.getNumero() == 1) {
 						dto.setLeitura(designacaoEscola.getTema());
 						dto.setLeitor(this.nomeAbreviado(designacaoEscola.getEstudante()));
-					
-					} else if (designacaoEscola.getNumero() == 1) {
-						dto.setTema1(designacaoEscola.getTema());
-						dto.setEstudante1(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						dto.setVideos(TipoDia.VIDEOS == dia.getTipoDia());
 					
 					} else if (designacaoEscola.getNumero() == 2) {
-						dto.setTema2(designacaoEscola.getTema());
-						dto.setEstudante2(this.nomeAbreviado(designacaoEscola.getEstudante()));
-						dto.setAjudante1(this.nomeAbreviado(designacaoEscola.getAjudante()));
+						dto.setEstVisita(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						dto.setAjuVisita(this.nomeAbreviado(designacaoEscola.getAjudante()));
 					
 					} else if (designacaoEscola.getNumero() == 3) {
-						dto.setTema3(designacaoEscola.getTema());
-						dto.setEstudante3(this.nomeAbreviado(designacaoEscola.getEstudante()));
-						dto.setAjudante2(this.nomeAbreviado(designacaoEscola.getAjudante()));
+						dto.setEstRevisita(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						dto.setAjuRevisita(this.nomeAbreviado(designacaoEscola.getAjudante()));
+					
+					} else if (designacaoEscola.getNumero() == 4) {
+						dto.setEstEstudo(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						dto.setAjuEstudo(this.nomeAbreviado(designacaoEscola.getAjudante()));
 					}
 					
 					if (!designacaoes.contains(dto)) {

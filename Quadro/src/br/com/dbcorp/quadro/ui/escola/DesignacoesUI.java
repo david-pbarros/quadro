@@ -68,7 +68,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		this.homens = this.gerenciador.listarNomesPessoas(Genero.M);
 		this.mulheres = this.gerenciador.listarNomesPessoas(Genero.F);
 		
-		TitledBorder title = BorderFactory.createTitledBorder("Escola do Ministério Teocrático");
+		TitledBorder title = BorderFactory.createTitledBorder("Nossa Vida e Ministério Cristão");
 
 		this.containerPanel = new JPanel();
 		this.containerPanel.setLayout(new BorderLayout(0, 0));

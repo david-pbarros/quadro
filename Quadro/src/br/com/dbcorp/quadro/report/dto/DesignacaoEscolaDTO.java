@@ -8,16 +8,18 @@ public class DesignacaoEscolaDTO {
 	private String tpAssembleia;
 	private String leitura;
 	private String leitor;
-	private String tema1;
-	private String tema2;
-	private String tema3;
-	private String estudante1;
-	private String estudante2;
-	private String estudante3;
-	private String ajudante1;
-	private String ajudante2;
+	private String estVisita;
+	private String estRevisita;
+	private String estEstudo;
+	private String ajuVisita;
+	private String ajuRevisita;
+	private String ajuEstudo;
+	private String discurso;
+	private String orador;
+	private String oradorJoias;
 	private boolean recapitulacao;
 	private boolean visita;
+	private boolean videos;
 	
 	public Date getDataReuniao() {
 		return dataReuniao;
@@ -47,60 +49,67 @@ public class DesignacaoEscolaDTO {
 		this.leitor = leitor;
 	}
 	
-	public String getTema1() {
-		return tema1;
+	public String getEstVisita() {
+		return estVisita;
 	}
-	public void setTema1(String tema1) {
-		this.tema1 = tema1;
-	}
-	
-	public String getTema2() {
-		return tema2;
-	}
-	public void setTema2(String tema2) {
-		this.tema2 = tema2;
+	public void setEstVisita(String estVisita) {
+		this.estVisita = estVisita;
 	}
 	
-	public String getTema3() {
-		return tema3;
+	public String getEstRevisita() {
+		return estRevisita;
 	}
-	public void setTema3(String tema3) {
-		this.tema3 = tema3;
-	}
-	
-	public String getEstudante1() {
-		return estudante1;
-	}
-	public void setEstudante1(String estudante1) {
-		this.estudante1 = estudante1;
+	public void setEstRevisita(String estRevisita) {
+		this.estRevisita = estRevisita;
 	}
 	
-	public String getEstudante2() {
-		return estudante2;
+	public String getEstEstudo() {
+		return estEstudo;
 	}
-	public void setEstudante2(String estudante2) {
-		this.estudante2 = estudante2;
-	}
-	
-	public String getEstudante3() {
-		return estudante3;
-	}
-	public void setEstudante3(String estudante3) {
-		this.estudante3 = estudante3;
+	public void setEstEstudo(String estEstudo) {
+		this.estEstudo = estEstudo;
 	}
 	
-	public String getAjudante1() {
-		return ajudante1;
+	public String getAjuVisita() {
+		return ajuVisita;
 	}
-	public void setAjudante1(String ajudante1) {
-		this.ajudante1 = ajudante1;
+	public void setAjuVisita(String ajuVisita) {
+		this.ajuVisita = ajuVisita;
 	}
 	
-	public String getAjudante2() {
-		return ajudante2;
+	public String getAjuRevisita() {
+		return ajuRevisita;
 	}
-	public void setAjudante2(String ajudante2) {
-		this.ajudante2 = ajudante2;
+	public void setAjuRevisita(String ajuRevisita) {
+		this.ajuRevisita = ajuRevisita;
+	}
+	
+	public String getAjuEstudo() {
+		return ajuEstudo;
+	}
+	public void setAjuEstudo(String ajuEstudo) {
+		this.ajuEstudo = ajuEstudo;
+	}
+	
+	public String getDiscurso() {
+		return discurso;
+	}
+	public void setDiscurso(String discurso) {
+		this.discurso = discurso;
+	}
+	
+	public String getOrador() {
+		return orador;
+	}
+	public void setOrador(String orador) {
+		this.orador = orador;
+	}
+	
+	public String getOradorJoias() {
+		return oradorJoias;
+	}
+	public void setOradorJoias(String oradorJoias) {
+		this.oradorJoias = oradorJoias;
 	}
 	
 	public boolean isRecapitulacao() {
@@ -115,5 +124,12 @@ public class DesignacaoEscolaDTO {
 	}
 	public void setVisita(boolean visita) {
 		this.visita = visita;
+	}
+	
+	public boolean isVideos() {
+		return videos;
+	}
+	public void setVideos(boolean videos) {
+		this.videos = videos;
 	}
 }
