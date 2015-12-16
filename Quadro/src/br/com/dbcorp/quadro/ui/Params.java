@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -36,6 +37,9 @@ public class Params {
 	private static Image caixaMes;
 	
 	private static Properties props;
+	
+	private static DateTimeFormatter dateFormatter;
+	private static DateTimeFormatter dateTimeFormatter;
 	
 	public static Properties propriedades() {
 		if (props == null) {
@@ -227,7 +231,21 @@ public class Params {
     	}
     	
     	return dir.getParentFile().getParentFile().getPath().replaceAll("%20", " ").replaceAll("%23", "#").replaceAll("%c3%a3", "ã").replaceAll("%c3%b3", "ó");
+	}
+	
+	public static DateTimeFormatter dateFormate() {
+		if (dateFormatter == null) {
+			dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		}
 		
+		return dateFormatter;
+	}
+	
+	public static DateTimeFormatter dateTimeFormate() {
+		if (dateTimeFormatter == null) {
+			dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		}
 		
+		return dateTimeFormatter;
 	}
 }

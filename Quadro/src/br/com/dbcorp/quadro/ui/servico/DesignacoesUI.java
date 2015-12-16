@@ -60,7 +60,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		this.gerenciador = new ServicoGerenciador();
 		this.pessoas = this.gerenciador.listarNomesPessoas(Genero.M);
 		
-		TitledBorder title = BorderFactory.createTitledBorder("Reunião de Serviço");
+		TitledBorder title = BorderFactory.createTitledBorder("Nossa Vida Cristã");
 
 		this.containerPanel = new JPanel();
 		this.containerPanel.setLayout(new BorderLayout(0, 0));

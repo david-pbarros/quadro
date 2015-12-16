@@ -1,15 +1,17 @@
 package br.com.dbcorp.quadro.gerenciador;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.Query;
 
 import br.com.dbcorp.quadro.DataBaseHelper;
 import br.com.dbcorp.quadro.entidades.Limpeza;
-import br.com.dbcorp.quadro.entidades.MesesDom;
 
 public class LimpezaGerenciador extends Gerenciador {
 
@@ -31,29 +33,32 @@ public class LimpezaGerenciador extends Gerenciador {
 		}
 	}
 	
-	public List<String> obtemDatas(Date dataInicial, int[] diasEscolhidos) {
+	public List<String> obtemDatas(LocalDate dataInicial, int[] diasEscolhidos) {
+		Locale ptBr = new Locale("pt");
+		
 		List<String> datas = new ArrayList<String>();
 		
-		List<String[]> semanas = setDias(diasEscolhidos[0], dataInicial);
-		List<String[]> finds = setDias(diasEscolhidos[1], dataInicial);
+		List<LocalDate> dias = setDias(diasEscolhidos[0], dataInicial);
+		dias.addAll(setDias(diasEscolhidos[1], dataInicial));
 		
-		for (int i = 0; i < 15; i++) {
-			String[] semana = semanas.get(i);
-			String[] find = finds.get(i);
+		dias.sort(Comparator.naturalOrder());
+		
+		for (int i = 0; i < dias.size(); i = i+2) {
+			LocalDate semana = dias.get(i);
+			LocalDate find = dias.get(i+1);
 			
-			StringBuffer sb = new StringBuffer(semana[0])
-				.append(" ");
+			StringBuffer sb = new StringBuffer();
+			sb.append(semana.getDayOfMonth());
 			
-			if (!semana[1].equals(find[1])) {
-				sb.append("de ")
-					.append(semana[1].substring(0, 3))
-					.append(". ");
+			if (semana.getMonth() != find.getMonth()) {
+				sb.append(" de ")
+					.append(semana.getMonth().getDisplayName(TextStyle.FULL, ptBr));
 			}
 			
-			sb.append("e ")
-			 	.append(find[0])
-			 	.append(" de ")
-			 	.append(find[1]);
+			sb.append(" e ")
+				.append(find.getDayOfMonth())
+				.append(" de ")
+				.append(find.getMonth().getDisplayName(TextStyle.FULL, ptBr));
 			
 			datas.add(sb.toString());
 		}
@@ -61,35 +66,23 @@ public class LimpezaGerenciador extends Gerenciador {
 		return datas;
 	}
 	
-	private List<String[]> setDias(int diaEscolhido, Date dtInicial) {
-		List<String[]> dias = new ArrayList<String[]>();
-
-		Calendar cd = Calendar.getInstance();
-		cd.setTime(dtInicial);
-		
-		//Seta o mes no primeiro dia
-		cd.set(Calendar.DAY_OF_MONTH, 1);
+	private List<LocalDate> setDias(int diaEscolhido, LocalDate cd) {
+		LocalDate date = cd.withDayOfMonth(1);
 		
 		//pega o primeiro dia da semana escolhido no mes
-		int weekday = cd.get(Calendar.DAY_OF_WEEK);
-		int dayDiff = 7 - (Calendar.SATURDAY - diaEscolhido);
-		int days = (Calendar.SATURDAY - weekday + dayDiff) % 7;
-		cd.add(Calendar.DAY_OF_YEAR, days);
+		int weekday = date.getDayOfWeek().getValue();
+		int dayDiff = 6 - (DayOfWeek.SATURDAY.getValue() - diaEscolhido);
+		int days = (DayOfWeek.SATURDAY.getValue() - weekday + dayDiff) % 7;
+		date = date.plusDays(days);
+		
+		List<LocalDate> dias = new ArrayList<LocalDate>();
 		
 		while (dias.size() < 15) {
-			Calendar ct = Calendar.getInstance();
-			ct.setTime(cd.getTime());
-			
-			cd.add(Calendar.DAY_OF_YEAR, 7);
-			
-			if (cd.getTime().getTime() >= dtInicial.getTime()) {
-				String[] temp = new String[2];
-				
-				temp[0] = Integer.toString(cd.get(Calendar.DAY_OF_MONTH));
-				temp[1] = MesesDom.values()[cd.get(Calendar.MONTH)].name();
-				
-				dias.add(temp);
+			if (!date.isBefore(cd)) {
+				dias.add(date);
 			}
+			
+			date = date.plusDays(7);
 		}
 		
 		return dias;

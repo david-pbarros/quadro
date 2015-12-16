@@ -5,9 +5,9 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -307,17 +307,15 @@ public class LimpezaUI extends InternalUI implements ActionListener {
 			
 			int[] dias = d.exibir();
 			
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			
 			try {
-				Date dtInidtIni = sdf.parse(this.txDataIni.getText());
+				LocalDate dtIni = LocalDate.parse(this.txDataIni.getText(), Params.dateFormate());
 				
-				List<String> datas = this.gerenciador.obtemDatas(dtInidtIni, dias);
+				List<String> datas = this.gerenciador.obtemDatas(dtIni, dias);
 				
 				for (int i = 0; i <15; i++) {
 					this.semanas.get(i).setText(datas.get(i));
 				}
-			} catch (ParseException e) {
+			} catch (DateTimeParseException e) {
 				String erro = "Data inicial invalida.";
 				
 				log.error(erro, e);
