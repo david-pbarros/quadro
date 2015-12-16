@@ -1,6 +1,5 @@
 package br.com.dbcorp.quadro.ui.escola;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
 import br.com.dbcorp.quadro.ui.DTextField;
+import br.com.dbcorp.quadro.ui.Params;
 import br.com.dbcorp.quadro.ui.ReadOnlyCheckBox;
 
 public abstract class SemanaUI extends JPanel {
@@ -107,7 +107,7 @@ public abstract class SemanaUI extends JPanel {
 	
 	protected void setTipoDia() {
 		if (this.diaReuniao != null) {
-			this.txData.setText(new SimpleDateFormat("dd/MM/yyyy").format(this.diaReuniao.getDia()));
+			this.txData.setText(this.diaReuniao.getDia().format(Params.dateFormate()));
 			
 			if (TipoDia.ASSEMBLEIA == this.diaReuniao.getTipoDia()) {
 				this.cbAss.setSelected(true);

@@ -3,7 +3,8 @@ package br.com.dbcorp.quadro.ui.dialog;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -93,26 +94,21 @@ public class NovoDiaDialog extends JDialog implements ActionListener {
 					JOptionPane.showMessageDialog(this, "Não é um dia válido.", "Erro", JOptionPane.ERROR_MESSAGE);
 				
 				} else {
-					int nrMes = this.mes.getMes().getNumero() - 1;
+					LocalDate data = LocalDate.of(this.mes.getAno(), this.mes.getMes().getNumero(), 1);
 					
-					Calendar cd = Calendar.getInstance();
-					
-					cd.set(Calendar.MONTH, nrMes);
-					cd.set(Calendar.YEAR, this.mes.getAno());
-					cd.set(Calendar.DAY_OF_MONTH, dia);
-					
-					if (cd.get(Calendar.MONTH) == nrMes) {
-						if (this.gerenciador.existeDia(cd)) {
+					if (data.lengthOfMonth() >= dia) {
+						data = data.withDayOfMonth(dia);
+						
+						if (this.gerenciador.existeDia(data)) {
 							JOptionPane.showMessageDialog(this, "Este dia já existe.", "Erro", JOptionPane.ERROR_MESSAGE);
 							
 						} else {
 							DiaReuniao diaReuniao = new DiaReuniao();
-							diaReuniao.setDia(cd.getTime());
+							diaReuniao.setDia(data);
 							
+							DayOfWeek diaSemana = data.getDayOfWeek();
 							
-							int diaSemana = cd.get(Calendar.DAY_OF_WEEK);
-							
-							if (diaSemana == Calendar.SUNDAY || diaSemana == Calendar.SATURDAY) {
+							if (diaSemana == DayOfWeek.SUNDAY || diaSemana == DayOfWeek.SATURDAY) {
 								diaReuniao.setQuando("F");
 								
 							} else {

@@ -1,18 +1,18 @@
 package br.com.dbcorp.quadro.report.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class IndicadoresDTO {
 
-	private Date data;
+	private LocalDate data;
 	private String indicadores;
 	private String volantes;
 	private String tpAssembleia;
 	
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 	

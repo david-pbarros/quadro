@@ -1,10 +1,10 @@
 package br.com.dbcorp.quadro.report.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ServicoDTO {
 
-	private Date dataReuniao;
+	private LocalDate dataReuniao;
 	private String tpAssembleia;
 	private String tempo;
 	private String tema;
@@ -12,10 +12,10 @@ public class ServicoDTO {
 	private String oracao;
 	private boolean visita;
 	
-	public Date getDataReuniao() {
+	public LocalDate getDataReuniao() {
 		return dataReuniao;
 	}
-	public void setDataReuniao(Date dataReuniao) {
+	public void setDataReuniao(LocalDate dataReuniao) {
 		this.dataReuniao = dataReuniao;
 	}
 	

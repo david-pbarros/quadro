@@ -3,9 +3,8 @@ package br.com.dbcorp.quadro.gerenciador;
 import java.awt.Cursor;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -21,6 +20,7 @@ import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.Genero;
 import br.com.dbcorp.quadro.entidades.Pessoa;
 import br.com.dbcorp.quadro.ui.InternalUI;
+import br.com.dbcorp.quadro.ui.Params;
 
 @SuppressWarnings("unchecked")
 public class DesignacaoEscolaGerenciador extends Gerenciador {
@@ -90,7 +90,7 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 		}
 	}
 	
-	public DiaReuniao obtemDia(Date data) {
+	public DiaReuniao obtemDia(LocalDate data) {
 		Query query = DataBaseHelper.createQuery("FROM DiaReuniao d WHERE d.dia = :dia")
 				.setParameter("dia", data);
 		
@@ -123,9 +123,7 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 					JOptionPane.showMessageDialog(designacaoesUI, "Arquivo inválido.", "Erro", JOptionPane.WARNING_MESSAGE);
 					
 				} else {
-					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-					
-					Date data = null;
+					LocalDate data = null;
 					List<DesignacaoEscola> designacoesSave = new ArrayList<DesignacaoEscola>();
 					List<Pessoa> pessoasSave = new ArrayList<>();
 					
@@ -141,7 +139,7 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 						try {
 							List<DesignacaoEscola> designacoes = null;
 							
-							Date temp = sdf.parse(campos[DIA]);
+							LocalDate temp = LocalDate.parse(campos[DIA], Params.dateFormate());
 							
 							if (!temp.equals(data)) {
 								data = temp;

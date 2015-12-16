@@ -1,6 +1,6 @@
 package br.com.dbcorp.quadro.report.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DiscursoDTO {
 
@@ -9,7 +9,7 @@ public class DiscursoDTO {
 	private String congregacao;
 	private String cidade;
 	private String tipo;
-	private Date data;
+	private LocalDate data;
 	private String tpAssembleia;
 	private boolean visita;
 	
@@ -48,10 +48,10 @@ public class DiscursoDTO {
 		this.tipo = tipo;
 	}
 	
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 	

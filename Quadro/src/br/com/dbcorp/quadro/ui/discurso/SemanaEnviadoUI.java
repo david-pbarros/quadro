@@ -1,7 +1,6 @@
 package br.com.dbcorp.quadro.ui.discurso;
 
 import java.awt.Dimension;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -18,6 +17,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.Discurso;
 import br.com.dbcorp.quadro.ui.DTextField;
+import br.com.dbcorp.quadro.ui.Params;
 
 public class SemanaEnviadoUI extends SemanaUI {
 	private static final long serialVersionUID = 8298632485665436526L;
@@ -95,7 +95,7 @@ public class SemanaEnviadoUI extends SemanaUI {
 	
 	private void setCampos() {
 		if (this.diaReuniao != null) {
-			this.txData.setText(new SimpleDateFormat("dd/MM/yyyy").format(this.diaReuniao.getDia()));
+			this.txData.setText(this.diaReuniao.getDia().format(Params.dateFormate()));
 		}
 		
 		this.txOrador.setText(this.discurso.getOrador());

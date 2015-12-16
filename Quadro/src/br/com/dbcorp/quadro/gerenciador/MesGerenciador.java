@@ -1,7 +1,9 @@
 package br.com.dbcorp.quadro.gerenciador;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityTransaction;
@@ -10,7 +12,6 @@ import javax.persistence.Query;
 import br.com.dbcorp.quadro.DataBaseHelper;
 import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
-import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
 import br.com.dbcorp.quadro.entidades.Discurso;
 import br.com.dbcorp.quadro.entidades.Mes;
 import br.com.dbcorp.quadro.entidades.MesesDom;
@@ -79,7 +80,8 @@ public class MesGerenciador extends Gerenciador {
 	public Mes abrirMes(int diaSemana, int diaFind) {
 		Mes mes = new Mes();
 		
-		Calendar cd = Calendar.getInstance();
+		LocalDate date;
+	
 		
 		Query query = DataBaseHelper.createQuery("FROM Mes m ORDER BY m.id DESC");
 		
@@ -87,19 +89,22 @@ public class MesGerenciador extends Gerenciador {
 		
 		if (!meses.isEmpty()) {
 			Mes mesD = meses.get(0);
-			cd.set(Calendar.MONTH, mesD.getMes().ordinal() + 1);
-			cd.set(Calendar.YEAR, mesD.getAno());
+			
+			Month mesAnterior = Month.values()[mesD.getMes().ordinal()];
+			int ano = mesAnterior == Month.DECEMBER ? mesD.getAno() + 1 : mesD.getAno();
+			
+			date = LocalDate.of(ano, mesAnterior.plus(1), 1);
+			
+		} else {
+			date = LocalDate.now().withDayOfMonth(1);
 		}
 		
-		mes.setAno(cd.get(Calendar.YEAR));
-		mes.setMes(MesesDom.values()[cd.get(Calendar.MONTH)]);
+		mes.setAno(date.getYear());
+		mes.setMes(MesesDom.values()[date.getMonth().ordinal()]);
 
-		Calendar cd2 = Calendar.getInstance();
-		cd2.setTime(cd.getTime());
-		
 		List<DiaReuniao> dias = new ArrayList<DiaReuniao>();
-		this.setDias(dias, diaSemana, cd, "S");
-		this.setDias(dias, diaFind, cd2, "F");
+		this.setDias(dias, diaSemana, date, "S");
+		this.setDias(dias, diaFind, date, "F");
 		
 		mes.setDias(dias);
 		
@@ -169,9 +174,9 @@ public class MesGerenciador extends Gerenciador {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public boolean existeDia(Calendar data) {
+	public boolean existeDia(LocalDate data) {
 		Query query = DataBaseHelper.createQuery("SELECT d FROM DiaReuniao d WHERE d.dia = :dia")
-				.setParameter("dia", data.getTime());
+				.setParameter("dia", data);
 		
 		List<DiaReuniao> dias = query.getResultList();
 		
@@ -183,32 +188,25 @@ public class MesGerenciador extends Gerenciador {
 		}
 	}
 	
-	private void setDias(List<DiaReuniao> dias, int diaEscolhido, Calendar cd, String tipo) {
+	private void setDias(List<DiaReuniao> dias, int diaEscolhido, LocalDate cd, String tipo) {
 		//Seta o mes no primeiro dia
-		cd.set(Calendar.DAY_OF_MONTH, 1);
-		
-		int mes = cd.get(Calendar.MONTH);
+		LocalDate date = cd.withDayOfMonth(1);
+		Month mesAtual = cd.getMonth();
 		
 		//pega o primeiro dia da semana escolhido no mes
-		int weekday = cd.get(Calendar.DAY_OF_WEEK);
-		int dayDiff = 7 - (Calendar.SATURDAY - diaEscolhido);
-		int days = (Calendar.SATURDAY - weekday + dayDiff) % 7;
-		cd.add(Calendar.DAY_OF_YEAR, days);
+		int weekday = date.getDayOfWeek().getValue();
+		int dayDiff = 6 - (DayOfWeek.SATURDAY.getValue() - diaEscolhido);
+		int days = (DayOfWeek.SATURDAY.getValue() - weekday + dayDiff) % 7;
+		date = date.plusDays(days);
 		
-		while (mes == cd.get(Calendar.MONTH)) {
-			Calendar ct = Calendar.getInstance();
-			ct.setTime(cd.getTime());
-			
+		while (mesAtual == date.getMonth()) {
 			DiaReuniao dia = new DiaReuniao();
-			dia.setDia(ct.getTime());
+			dia.setDia(date);
 			dia.setQuando(tipo);
+
 			dias.add(dia);
 			
-			if ("S".equalsIgnoreCase(tipo) && dias.size() == 1) {
-				dia.setTipoDia(TipoDia.VIDEOS);
-			}
-			
-			cd.add(Calendar.DAY_OF_YEAR, 7);
+			date = date.plusDays(7);
 		}
 	}
 }

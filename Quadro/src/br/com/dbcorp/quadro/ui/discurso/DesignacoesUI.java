@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -313,23 +313,27 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 			try {
 				int diaNumber = Integer.parseInt(dia);
 				
-				if (diaNumber > 0 && diaNumber < 31) {
-					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-					DiaReuniao diaEnvio = new DiaReuniao();
-					diaEnvio.setTipoDia(TipoDia.ESPECIAL_ENVIADOS);
-					diaEnvio.setQuando("F");
-					diaEnvio.setDia(sdf.parse(dia + "/" + this.mesDesignacao.getMes().getNumero() + "/" + this.mesDesignacao.getAno()));
-					
-					this.mesDesignacao.getDias().add(diaEnvio);
-					
-					this.gerenciador.salvarMesDesignacao(this.mesDesignacao);
-					
-					this.salvar();
-					
-					this.diasReuniao = this.gerenciador.obterDiasReuniaoEnviados(this.mesDesignacao); 
-					this.carregarMes();
-					
+				LocalDate data = LocalDate.of(this.mesDesignacao.getAno(), this.mesDesignacao.getMes().getNumero(), 1);
+				
+				if (diaNumber > 0 && diaNumber < 32) {
+					if (data.lengthOfMonth() >= diaNumber) {
+						DiaReuniao diaEnvio = new DiaReuniao();
+						diaEnvio.setTipoDia(TipoDia.ESPECIAL_ENVIADOS);
+						diaEnvio.setQuando("F");
+						diaEnvio.setDia(data.withDayOfMonth(diaNumber));
+						
+						this.mesDesignacao.getDias().add(diaEnvio);
+						
+						this.gerenciador.salvarMesDesignacao(this.mesDesignacao);
+						
+						this.salvar();
+						
+						this.diasReuniao = this.gerenciador.obterDiasReuniaoEnviados(this.mesDesignacao); 
+						this.carregarMes();
+						
+					} else {
+						JOptionPane.showMessageDialog(this, "Este mês não tem 31 dias.");
+					}
 				} else {
 					JOptionPane.showMessageDialog(this, "Não é um dia válido!");
 				}

@@ -4,7 +4,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -54,7 +55,7 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 				RowSpec.decode("default:grow"),
 				FormSpecs.RELATED_GAP_ROWSPEC,}));
 		
-		JLabel lblDia = new JLabel(new SimpleDateFormat("EE - dd").format(diareuniao.getDia()) + ":");
+		JLabel lblDia = new JLabel(diareuniao.getDia().getDayOfWeek().getDisplayName(TextStyle.SHORT, new Locale("pt")) + " - " + diareuniao.getDia().getDayOfMonth() + ":");
 		this.chAssembleia = new JCheckBox("Assembl\u00E9ia/Congresso");
 		this.chRecaptulacao = new JCheckBox("Recapitula\u00E7\u00E3o");
 		this.chVideos = new JCheckBox("Apresentações");
@@ -110,7 +111,7 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 			add(this.descPanel, "11, 1, left, fill");
 		}
 
-		this.setPreferredSize(new Dimension(720, 31));
+		this.setPreferredSize(new Dimension(1032, 31));
 	}
 	
 	@Override

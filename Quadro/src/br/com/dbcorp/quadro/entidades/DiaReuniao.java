@@ -1,6 +1,6 @@
 package br.com.dbcorp.quadro.entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +41,7 @@ public class DiaReuniao implements Comparable<DiaReuniao> {
 	}
 	
 	private int id;
-	private Date dia;
+	private LocalDate dia;
 	private String quando;
 	private String tipo;
 	private String descricao;
@@ -55,10 +55,10 @@ public class DiaReuniao implements Comparable<DiaReuniao> {
 	}
 	
 	@Temporal(TemporalType.DATE)
-	public Date getDia() {
+	public LocalDate getDia() {
 		return dia;
 	}
-	public void setDia(Date dia) {
+	public void setDia(LocalDate dia) {
 		this.dia = dia;
 	}
 	

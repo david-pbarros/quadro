@@ -14,9 +14,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.text.SimpleDateFormat;
+import java.time.format.TextStyle;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -66,8 +67,7 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 	private MesGerenciador gerenciador;
 	private Mes mesSelecionado;
 	
-	private SimpleDateFormat sdf;
-	private SimpleDateFormat diaSemana;
+	private Locale ptBr;
 	
 	private String doisTab = "\t\t";
 	private String tresTab = "\t\t\t";
@@ -282,8 +282,7 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 	}
 	
 	private void exportar() {
-		this.sdf = new SimpleDateFormat("dd");
-		this.diaSemana = new SimpleDateFormat("EEEE");
+		this.ptBr = new Locale("pt");
 		
 		String fileName = this.mesSelecionado.getMes().toString() + ".xml";
 		
@@ -349,9 +348,9 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 		boolean temdesignacao = false;
 		
 		StringBuffer sb = new StringBuffer("\n\t<designacoes diaMes=\"")
-			.append(this.sdf.format(diaReuniao.getDia()))
+			.append(diaReuniao.getDia().getDayOfMonth())
 			.append(" diaSemana=\"")
-			.append(this.diaSemana.format(diaReuniao.getDia()));
+			.append(diaReuniao.getDia().getDayOfWeek().getDisplayName(TextStyle.SHORT_STANDALONE, this.ptBr));
 		
 		if (TipoDia.VISITA == diaReuniao.getTipoDia()) {
 			sb.append("\" visita=\"sim");

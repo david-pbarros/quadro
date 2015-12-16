@@ -1,12 +1,12 @@
 package br.com.dbcorp.quadro.report.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class VisitaDTO {
 	
-	private Date diaSemana;
-	private Date diaFimSemana;
+	private LocalDate diaSemana;
+	private LocalDate diaFimSemana;
 	private String leitura;
 	private String leitor;
 	private String tema1;
@@ -30,17 +30,17 @@ public class VisitaDTO {
 	private String dirigenteSentinela;
 	private List<VisitaServicoDTO> servico;
 	
-	public Date getDiaSemana() {
+	public LocalDate getDiaSemana() {
 		return diaSemana;
 	}
-	public void setDiaSemana(Date diaSemana) {
+	public void setDiaSemana(LocalDate diaSemana) {
 		this.diaSemana = diaSemana;
 	}
 	
-	public Date getDiaFimSemana() {
+	public LocalDate getDiaFimSemana() {
 		return diaFimSemana;
 	}
-	public void setDiaFimSemana(Date diaFimSemana) {
+	public void setDiaFimSemana(LocalDate diaFimSemana) {
 		this.diaFimSemana = diaFimSemana;
 	}
 	

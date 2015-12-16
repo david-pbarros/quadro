@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,7 +202,7 @@ public class SemanaUI extends JPanel implements ActionListener {
 	
 	private void setCampos() {
 		if (this.diaReuniao != null) {
-			this.txData.setText(new SimpleDateFormat("dd/MM/yyyy").format(this.diaReuniao.getDia()));
+			this.txData.setText(this.diaReuniao.getDia().format(Params.dateFormate()));
 			
 			if (TipoDia.ASSEMBLEIA == this.diaReuniao.getTipoDia()) {
 				this.chAssembleia.setSelected(true);
