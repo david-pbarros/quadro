@@ -4,7 +4,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.time.DayOfWeek;
 import java.time.format.TextStyle;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JCheckBox;
@@ -33,9 +38,13 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 	private DiaReuniao diareuniao;
 	private JPanel descPanel;
 	private JTextField txDescricao;
+	private DiaPanel diaPar;
 	
-	public DiaPanel(DiaReuniao diareuniao) {
+	private List<DiaPanel> diasReuniao;
+	
+	public DiaPanel(DiaReuniao diareuniao, List<DiaPanel> diasReuniao) {
 		this.diareuniao = diareuniao;
+		this.diasReuniao = diasReuniao;
 		
 		setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("right:max(30dlu;default)"),
@@ -71,6 +80,25 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		this.txDescricao = new JTextField();
 		this.txDescricao.setColumns(20);
 		this.txDescricao.getDocument().addDocumentListener(this);
+		
+		this.txDescricao.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (diaPar != null) {
+					diaPar.txDescricao.setText(txDescricao.getText());
+				}
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 
 		this.descPanel = new JPanel();
 		this.descPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -123,12 +151,38 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		this.chSemReuniao.setEnabled(true);
 		this.chVideos.setEnabled(true);
 		this.chAssembleia.setEnabled(true);
+		this.descPanel.setVisible(false);
+		this.diareuniao.setDescricao(null);
+		
+		if (this.diaPar == null) {
+			if (DayOfWeek.SUNDAY == this.diareuniao.getDia().getDayOfWeek() || DayOfWeek.SATURDAY ==this.diareuniao.getDia().getDayOfWeek()) {
+				this.diaPar = this.diasReuniao.stream()
+						.filter(p->p.diareuniao.getDia().isBefore(this.diareuniao.getDia()))
+						.max(Comparator.comparing(p->p.diareuniao.getDia()))
+						.orElse(null);
+
+			} else {
+				this.diaPar = this.diasReuniao.stream()
+						.filter(p->p.diareuniao.getDia().isAfter(this.diareuniao.getDia()))
+						.min(Comparator.comparing(p->p.diareuniao.getDia()))
+						.orElse(null);
+			}
+		}
+		
+		if (this.diaPar != null) {
+			this.diaPar.diaPar = this;
+			
+			this.diaPar.enableByPar();
+		}
 		
 		if (event.getSource() == this.chAssembleia && this.chAssembleia.isSelected()) {
 			tipo = TipoDia.ASSEMBLEIA;
 			this.descPanel.setVisible(true);
 			disableChecks(this.chAssembleia);
 			
+			if (this.diaPar != null) {
+				this.diaPar.disableByPar();
+			}
 		} else if (event.getSource() == this.chRecaptulacao && this.chRecaptulacao.isSelected()) {
 			tipo = TipoDia.RECAPITULACAO;
 			disableChecks(this.chRecaptulacao);
@@ -153,6 +207,27 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		this.diareuniao.setDescricao(this.txDescricao.getText());
+	}
+	
+	private void disableByPar() {
+		this.descPanel.setVisible(true);
+		disableChecks(this.chAssembleia);
+		
+		this.diareuniao.setTipoDia(TipoDia.ASSEMBLEIA);
+	}
+	
+	private void enableByPar() {
+		this.chRecaptulacao.setEnabled(true);
+		this.chVisita.setEnabled(true);
+		this.chSemReuniao.setEnabled(true);
+		this.chVideos.setEnabled(true);
+		this.chAssembleia.setEnabled(true);
+		this.descPanel.setVisible(false);
+		
+		this.chAssembleia.setSelected(false);
+		
+		this.diareuniao.setTipoDia(null);
+		this.diareuniao.setDescricao(null);
 	}
 	
 	private void disableChecks(JCheckBox chSelecionado) {

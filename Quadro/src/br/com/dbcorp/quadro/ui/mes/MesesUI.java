@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -196,12 +197,18 @@ public class MesesUI extends InternalUI implements ActionListener, ListSelection
 	}
 	
 	public void setDias() {
+		List<DiaPanel> diasReuniao = new ArrayList<DiaPanel>();
+		
 		this.diasPanel.removeAll();
 		
 		this.diasPanel.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 38 * this.mesSelecionado.getDias().size()));
 		
 		for (DiaReuniao diaReuniao : this.mesSelecionado.getDias()) {
-			this.diasPanel.add(new DiaPanel(diaReuniao));
+			DiaPanel panel = new DiaPanel(diaReuniao, diasReuniao);
+			
+			diasReuniao.add(panel);
+			
+			this.diasPanel.add(panel);
 		}
 		
 		this.repaint();
