@@ -16,7 +16,7 @@
 	<parameter name="caixaTituloTemp" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<field name="data" class="java.util.Date"/>
+	<field name="data" class="java.time.LocalDate"/>
 	<field name="indicadores" class="java.lang.String"/>
 	<field name="volantes" class="java.lang.String"/>
 	<field name="tpAssembleia" class="java.lang.String"/>
@@ -25,42 +25,42 @@
 		<groupHeader>
 			<band height="44">
 				<rectangle>
-					<reportElement uuid="e04b20a0-465f-4447-bf33-79390ca25da5" x="26" y="5" width="505" height="35"/>
+					<reportElement x="26" y="5" width="505" height="35" uuid="e04b20a0-465f-4447-bf33-79390ca25da5"/>
 					<graphicElement>
 						<pen lineWidth="1.0" lineColor="#666666"/>
 					</graphicElement>
 				</rectangle>
 				<rectangle>
-					<reportElement uuid="c6969e28-5c91-4739-964b-45dfaca971ed" x="26" y="5" width="502" height="33" backcolor="#999999"/>
+					<reportElement x="26" y="5" width="502" height="33" backcolor="#999999" uuid="c6969e28-5c91-4739-964b-45dfaca971ed"/>
 				</rectangle>
 				<rectangle>
-					<reportElement uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5" x="23" y="0" width="502" height="35"/>
+					<reportElement x="23" y="0" width="502" height="35" uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5"/>
 				</rectangle>
 				<rectangle>
-					<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="26" y="3" width="76" height="29"/>
+					<reportElement x="26" y="3" width="76" height="29" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 				</rectangle>
 				<staticText>
-					<reportElement uuid="7b24df25-6130-4449-9ffd-3c52b1b97f4e" x="27" y="4" width="75" height="28"/>
+					<reportElement x="27" y="4" width="75" height="28" uuid="7b24df25-6130-4449-9ffd-3c52b1b97f4e"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Perpetua" size="14" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[Data:]]></text>
 				</staticText>
 				<rectangle>
-					<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="359" y="3" width="162" height="29"/>
+					<reportElement x="359" y="3" width="162" height="29" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 				</rectangle>
 				<rectangle>
-					<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="107" y="3" width="247" height="29"/>
+					<reportElement x="107" y="3" width="247" height="29" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 				</rectangle>
 				<staticText>
-					<reportElement uuid="2408cb1b-0342-439d-89b1-22e260247d57" x="109" y="4" width="245" height="28"/>
+					<reportElement x="109" y="4" width="245" height="28" uuid="2408cb1b-0342-439d-89b1-22e260247d57"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Perpetua" size="14" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[Indicadores:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="2408cb1b-0342-439d-89b1-22e260247d57" x="359" y="3" width="162" height="29"/>
+					<reportElement x="359" y="3" width="162" height="29" uuid="2408cb1b-0342-439d-89b1-22e260247d57"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Perpetua" size="14" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 					</textElement>
@@ -72,49 +72,49 @@
 	<background>
 		<band height="801" splitType="Stretch">
 			<line>
-				<reportElement uuid="f7ec4af8-f357-4fbf-a3f9-9909f59625e9" x="1" y="792" width="555" height="1"/>
+				<reportElement x="1" y="792" width="555" height="1" uuid="f7ec4af8-f357-4fbf-a3f9-9909f59625e9"/>
 				<graphicElement>
 					<pen lineWidth="3.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement uuid="11975a3f-128d-4072-b0a0-9a8bc86a3b40" x="-6" y="800" width="569" height="1"/>
+				<reportElement x="-6" y="800" width="569" height="1" uuid="11975a3f-128d-4072-b0a0-9a8bc86a3b40"/>
 				<graphicElement>
 					<pen lineWidth="6.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement uuid="f29f0072-4ee3-451c-88db-42a84919c251" x="3" y="-4" width="1" height="796"/>
+				<reportElement x="3" y="-4" width="1" height="796" uuid="f29f0072-4ee3-451c-88db-42a84919c251"/>
 				<graphicElement>
 					<pen lineWidth="6.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement uuid="c021051f-3982-4830-9074-5bb54e157a09" x="0" y="-2" width="555" height="1"/>
+				<reportElement x="0" y="-2" width="555" height="1" uuid="c021051f-3982-4830-9074-5bb54e157a09"/>
 				<graphicElement>
 					<pen lineWidth="6.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement uuid="9b055d01-d3c6-4cfa-a4fd-f20fdfe46379" x="562" y="-13" width="1" height="814"/>
+				<reportElement x="562" y="-13" width="1" height="814" uuid="9b055d01-d3c6-4cfa-a4fd-f20fdfe46379"/>
 				<graphicElement>
 					<pen lineWidth="6.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement uuid="75054248-dff4-4487-99dc-854fb7082b6e" x="-7" y="-12" width="572" height="1"/>
+				<reportElement x="-7" y="-12" width="572" height="1" uuid="75054248-dff4-4487-99dc-854fb7082b6e"/>
 				<graphicElement>
 					<pen lineWidth="3.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement uuid="ff7f767d-25aa-44d4-b468-a1828cf89b3e" x="-7" y="-13" width="1" height="813"/>
+				<reportElement x="-7" y="-13" width="1" height="813" uuid="ff7f767d-25aa-44d4-b468-a1828cf89b3e"/>
 				<graphicElement>
 					<pen lineWidth="3.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement uuid="16529022-01c0-4bad-85b4-8c30f15078d9" x="554" y="-4" width="1" height="796"/>
+				<reportElement x="554" y="-4" width="1" height="796" uuid="16529022-01c0-4bad-85b4-8c30f15078d9"/>
 				<graphicElement>
 					<pen lineWidth="3.0"/>
 				</graphicElement>
@@ -124,29 +124,29 @@
 	<title>
 		<band height="159" splitType="Stretch">
 			<image>
-				<reportElement uuid="4213e2cc-0ddd-4024-99b4-e69d7ebc2135" mode="Transparent" x="83" y="19" width="388" height="82"/>
+				<reportElement mode="Transparent" x="83" y="19" width="388" height="82" uuid="4213e2cc-0ddd-4024-99b4-e69d7ebc2135"/>
 				<imageExpression><![CDATA[$P{caixaTituloTemp} == null ? $P{caixaTitulo} : $P{caixaTituloTemp}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement uuid="8b896c4a-b205-4ebd-8366-c65d17b9f75f" x="0" y="32" width="554" height="34"/>
+				<reportElement x="0" y="32" width="554" height="34" uuid="8b896c4a-b205-4ebd-8366-c65d17b9f75f"/>
 				<textElement textAlignment="Center">
 					<font fontName="Perpetua" size="18" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[Programação de Microfones Volante e]]></text>
 			</staticText>
 			<image scaleImage="FillFrame">
-				<reportElement uuid="7465cb15-795e-4980-98c8-16090e27569d" x="23" y="101" width="508" height="42"/>
+				<reportElement x="23" y="101" width="508" height="42" uuid="7465cb15-795e-4980-98c8-16090e27569d"/>
 				<imageExpression><![CDATA[$P{caixaMesTemp} == null ? $P{caixaMes} : $P{caixaMesTemp}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement uuid="44879a1e-c1a0-4a14-bd0e-bcfa25f2f97b" x="0" y="101" width="554" height="33"/>
+				<reportElement x="0" y="101" width="554" height="33" uuid="44879a1e-c1a0-4a14-bd0e-bcfa25f2f97b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="18" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{mes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="8b896c4a-b205-4ebd-8366-c65d17b9f75f" x="1" y="55" width="553" height="34"/>
+				<reportElement x="1" y="55" width="553" height="34" uuid="8b896c4a-b205-4ebd-8366-c65d17b9f75f"/>
 				<textElement textAlignment="Center">
 					<font fontName="Perpetua" size="18" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
@@ -158,42 +158,42 @@
 		<band height="44" splitType="Stretch">
 			<printWhenExpression><![CDATA[$F{tpAssembleia} == null]]></printWhenExpression>
 			<rectangle>
-				<reportElement uuid="e04b20a0-465f-4447-bf33-79390ca25da5" x="27" y="6" width="505" height="33"/>
+				<reportElement x="27" y="6" width="505" height="33" uuid="e04b20a0-465f-4447-bf33-79390ca25da5"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement uuid="c6969e28-5c91-4739-964b-45dfaca971ed" x="27" y="6" width="502" height="30" backcolor="#999999"/>
+				<reportElement x="27" y="6" width="502" height="30" backcolor="#999999" uuid="c6969e28-5c91-4739-964b-45dfaca971ed"/>
 			</rectangle>
 			<rectangle>
-				<reportElement uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5" x="24" y="1" width="502" height="33"/>
+				<reportElement x="24" y="1" width="502" height="33" uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5"/>
 			</rectangle>
 			<rectangle>
-				<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="107" y="4" width="247" height="26"/>
+				<reportElement x="107" y="4" width="247" height="26" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="ef2cefb0-1b51-436b-8ddb-594577bff672" x="107" y="5" width="247" height="25"/>
+				<reportElement x="107" y="5" width="247" height="25" uuid="ef2cefb0-1b51-436b-8ddb-594577bff672"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="13" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{indicadores}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="27" y="4" width="75" height="26"/>
+				<reportElement x="27" y="4" width="75" height="26" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
-				<reportElement uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d" x="28" y="5" width="74" height="25"/>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="28" y="5" width="74" height="25" uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="13" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="359" y="4" width="163" height="26"/>
+				<reportElement x="359" y="4" width="163" height="26" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="ef2cefb0-1b51-436b-8ddb-594577bff672" x="359" y="5" width="162" height="25"/>
+				<reportElement x="359" y="5" width="162" height="25" uuid="ef2cefb0-1b51-436b-8ddb-594577bff672"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="13" isBold="false"/>
 				</textElement>
@@ -203,43 +203,43 @@
 		<band height="43">
 			<printWhenExpression><![CDATA[$F{tpAssembleia} != null]]></printWhenExpression>
 			<rectangle>
-				<reportElement uuid="e04b20a0-465f-4447-bf33-79390ca25da5" x="27" y="6" width="505" height="33"/>
+				<reportElement x="27" y="6" width="505" height="33" uuid="e04b20a0-465f-4447-bf33-79390ca25da5"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineColor="#666666"/>
 				</graphicElement>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="ef2cefb0-1b51-436b-8ddb-594577bff672" x="175" y="6" width="346" height="22"/>
+				<reportElement x="175" y="6" width="346" height="22" uuid="ef2cefb0-1b51-436b-8ddb-594577bff672"/>
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="Serif" size="13" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{volantes}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement uuid="c6969e28-5c91-4739-964b-45dfaca971ed" x="27" y="6" width="502" height="30" backcolor="#999999"/>
+				<reportElement x="27" y="6" width="502" height="30" backcolor="#999999" uuid="c6969e28-5c91-4739-964b-45dfaca971ed"/>
 			</rectangle>
 			<rectangle>
-				<reportElement uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5" x="24" y="1" width="502" height="33"/>
+				<reportElement x="24" y="1" width="502" height="33" uuid="bf198135-d460-4cfe-91c8-9bed49a6f4b5"/>
 			</rectangle>
 			<rectangle>
-				<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="107" y="4" width="415" height="26"/>
+				<reportElement x="107" y="4" width="415" height="26" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="ef2cefb0-1b51-436b-8ddb-594577bff672" x="109" y="5" width="412" height="25"/>
+				<reportElement x="109" y="5" width="412" height="25" uuid="ef2cefb0-1b51-436b-8ddb-594577bff672"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="13" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tpAssembleia}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement uuid="6595652f-7664-482c-bd2b-7e35982a223d" x="27" y="4" width="75" height="26"/>
+				<reportElement x="27" y="4" width="75" height="26" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
-				<reportElement uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d" x="28" y="5" width="74" height="25"/>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="28" y="5" width="74" height="25" uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="13" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

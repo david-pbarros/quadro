@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LeitorPresidente" pageWidth="595" pageHeight="843" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="828aa057-0c1d-431f-9f96-04ea2dd89865">
-	<property name="ireport.zoom" value="3.0"/>
-	<property name="ireport.x" value="1179"/>
-	<property name="ireport.y" value="616"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="11"/>
 	<parameter name="mes" class="java.lang.String"/>
 	<parameter name="caixaTituloMenorTemp" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -16,7 +16,7 @@
 	<parameter name="caixaMes" class="java.awt.Image">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<field name="dataReuniao" class="java.util.Date"/>
+	<field name="dataReuniao" class="java.time.LocalDate"/>
 	<field name="tpAssembleia" class="java.lang.String"/>
 	<field name="tempo" class="java.lang.String"/>
 	<field name="tema" class="java.lang.String"/>
@@ -42,12 +42,12 @@
 				<rectangle>
 					<reportElement x="26" y="9" width="496" height="25" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 				</rectangle>
-				<textField pattern="dd/MM" isBlankWhenNull="true">
+				<textField pattern="" isBlankWhenNull="true">
 					<reportElement x="0" y="9" width="555" height="25" uuid="f59a33ac-f166-4878-becb-fddb30732604"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Perpetua" size="16" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{dataReuniao}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{dataReuniao}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 				</textField>
 				<line>
 					<reportElement x="23" y="46" width="502" height="1" uuid="922723fb-3aa0-4209-b29d-36569ca39724"/>
@@ -259,7 +259,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Perpetua" size="18" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Reunião de Serviço]]></text>
+				<text><![CDATA[Nossa Vida Cristã]]></text>
 			</staticText>
 			<image scaleImage="FillFrame">
 				<reportElement x="23" y="67" width="508" height="42" uuid="7465cb15-795e-4980-98c8-16090e27569d"/>

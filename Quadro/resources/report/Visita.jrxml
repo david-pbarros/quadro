@@ -12,8 +12,8 @@
 	<parameter name="SUBREPORT" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<field name="diaSemana" class="java.util.Date"/>
-	<field name="diaFimSemana" class="java.util.Date"/>
+	<field name="diaSemana" class="java.time.LocalDate"/>
+	<field name="diaFimSemana" class="java.time.LocalDate"/>
 	<field name="leitura" class="java.lang.String"/>
 	<field name="leitor" class="java.lang.String"/>
 	<field name="tema1" class="java.lang.String"/>
@@ -114,12 +114,12 @@
 				<reportElement x="23" y="92" width="508" height="42" uuid="7465cb15-795e-4980-98c8-16090e27569d"/>
 				<imageExpression><![CDATA[$P{caixaMes}]]></imageExpression>
 			</image>
-			<textField pattern="EEEEE dd MMMMM" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="3" y="94" width="552" height="28" uuid="6b3ea930-7c89-4afd-abda-e1ada6b39132"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Perpetua" size="16" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{diaSemana}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{diaSemana}.format(java.time.format.DateTimeFormatter.ofPattern("EEEEE dd MMMMM"))]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

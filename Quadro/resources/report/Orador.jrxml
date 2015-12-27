@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oradores" pageWidth="595" pageHeight="843" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="828aa057-0c1d-431f-9f96-04ea2dd89865">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="357"/>
+	<property name="ireport.y" value="141"/>
 	<parameter name="mes" class="java.lang.String"/>
 	<parameter name="caixaTituloMenor" class="java.awt.Image">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -10,7 +10,7 @@
 	<parameter name="caixaMes" class="java.awt.Image">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<field name="data" class="java.util.Date"/>
+	<field name="data" class="java.time.LocalDate"/>
 	<field name="orador" class="java.lang.String"/>
 	<field name="congregacao" class="java.lang.String"/>
 	<field name="tpAssembleia" class="java.lang.String"/>
@@ -214,12 +214,12 @@
 			<rectangle>
 				<reportElement x="27" y="4" width="75" height="39" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="28" y="6" width="74" height="35" uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="385" y="4" width="137" height="39" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
@@ -274,12 +274,12 @@
 			<rectangle>
 				<reportElement x="107" y="4" width="414" height="39" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="28" y="6" width="74" height="35" uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="151" y="22" width="370" height="19" uuid="64b434a1-50c1-44ee-b905-5e7b3cc93fc6"/>
@@ -324,12 +324,12 @@
 			<rectangle>
 				<reportElement x="27" y="4" width="75" height="23" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 			</rectangle>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="28" y="6" width="74" height="19" uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d"/>
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="Perpetua" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="109" y="6" width="412" height="19" uuid="ef2cefb0-1b51-436b-8ddb-594577bff672"/>
@@ -376,12 +376,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="28" y="6" width="74" height="35" uuid="c660de59-edc7-4e51-b26b-e3fe9658dc7d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="385" y="6" width="136" height="19" uuid="ef2cefb0-1b51-436b-8ddb-594577bff672"/>
@@ -448,12 +448,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tema}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="28" y="6" width="74" height="35" uuid="ad0f63a1-b8db-4cf6-b842-c4fb2186f269"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Perpetua" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="36">
@@ -483,12 +483,12 @@
 				</textElement>
 				<text><![CDATA[Visita Superintendente]]></text>
 			</staticText>
-			<textField pattern="dd/MM" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="28" y="6" width="74" height="19" uuid="a6205c1f-c12c-482a-8d42-ab37999c2177"/>
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="Perpetua" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

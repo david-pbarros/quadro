@@ -16,7 +16,7 @@
 	<parameter name="caixaTituloTemp" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<field name="dataReuniao" class="java.util.Date"/>
+	<field name="dataReuniao" class="java.time.LocalDate"/>
 	<field name="presidente" class="java.lang.String"/>
 	<field name="leitor" class="java.lang.String"/>
 	<field name="tpAssembleia" class="java.lang.String"/>
@@ -40,12 +40,12 @@
 				<rectangle>
 					<reportElement x="26" y="3" width="496" height="31" uuid="6595652f-7664-482c-bd2b-7e35982a223d"/>
 				</rectangle>
-				<textField pattern="dd/MM" isBlankWhenNull="true">
+				<textField pattern="" isBlankWhenNull="true">
 					<reportElement x="0" y="5" width="555" height="29" uuid="f59a33ac-f166-4878-becb-fddb30732604"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Perpetua" size="16" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{dataReuniao}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{dataReuniao}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
