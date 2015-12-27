@@ -204,17 +204,23 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 			this.mesPanel.removeAll();
 		}
 		
+		int qtd = 0;
+		
 		for (DiaReuniao diaReuniao : this.diasReuniao) {
-			EquipeServico equipeServico = this.gerenciador.obterEquipeServicoSemana(diaReuniao);
-			this.esquipesServico.add(equipeServico);
-			
-			SemanaUI semana = new SemanaUI(diaReuniao, equipeServico, this.pessoas);
-			
-			this.semanas.add(semana);
-			this.mesPanel.add(semana);
+			if (!"E".equalsIgnoreCase(diaReuniao.getTipo())) {
+				qtd++;
+				
+				EquipeServico equipeServico = this.gerenciador.obterEquipeServicoSemana(diaReuniao);
+				this.esquipesServico.add(equipeServico);
+				
+				SemanaUI semana = new SemanaUI(diaReuniao, equipeServico, this.pessoas);
+				
+				this.semanas.add(semana);
+				this.mesPanel.add(semana);
+			}
 		}
 
-		this.mesPanel.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 242 * diasReuniao.size()));
+		this.mesPanel.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, 242 * qtd));
 		
 		this.revalidate();
 		this.repaint();
