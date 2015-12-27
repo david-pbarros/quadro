@@ -291,7 +291,7 @@ public abstract class SemanaMelhoreUI extends JPanel {
 		if (!this.cbReca.isSelected()) {
 			this.designacaoLei = this.designacaoLei == null ? new DesignacaoEscola() : this.designacaoLei;
 			
-			if (!("B".equals(sala) && this.cbVid.isSelected())) {
+			if ((this.cbVid.isSelected() && "A".equals(sala)) || !this.cbVid.isSelected()) {
 				this.setDesignacao(this.designacaoLei, sala, 1, this.txLeituraFonte, this.txLeitor, null);
 			}
 			
