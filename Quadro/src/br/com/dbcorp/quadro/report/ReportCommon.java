@@ -28,6 +28,7 @@ import br.com.dbcorp.quadro.entidades.Mes;
 import br.com.dbcorp.quadro.entidades.SemanaVisita;
 import br.com.dbcorp.quadro.entidades.Sentinela;
 import br.com.dbcorp.quadro.entidades.Servico;
+import br.com.dbcorp.quadro.entidades.VidaMinisterio;
 import br.com.dbcorp.quadro.gerenciador.Gerenciador;
 import br.com.dbcorp.quadro.report.dto.DesignacaoEscolaDTO;
 import br.com.dbcorp.quadro.report.dto.DiscursoDTO;
@@ -194,7 +195,7 @@ public class ReportCommon {
 		this.gerarRelatorio("Orador", new JRBeanCollectionDataSource(discursosDTO));
 	}
 	
-	public void gerarEscola(List<DesignacaoEscola> designacaoesEscola, Mes mes, String sala) {
+	public void gerarEscola(List<DesignacaoEscola> designacaoesEscola, Mes mes, String sala, List<VidaMinisterio> vidaMinisterios) {
 		this.prop.put("mes", mes.getMes().name());
 		
 		List<DesignacaoEscolaDTO> designacaoes = new ArrayList<DesignacaoEscolaDTO>();
@@ -207,8 +208,7 @@ public class ReportCommon {
 		
 		for (DiaReuniao dia : mes.getDias()) {
 			if ("S".equalsIgnoreCase(dia.getQuando()) && (TipoDia.ASSEMBLEIA == dia.getTipoDia() || TipoDia.RECAPITULACAO == dia.getTipoDia() || TipoDia.VISITA == dia.getTipoDia() || TipoDia.VIDEOS == dia.getTipoDia())) {
-				dto = new DesignacaoEscolaDTO();
-				dto.setDataReuniao(dia.getDia());
+				dto = this.criaDesignacaoEscola(dia, sala, vidaMinisterios);
 				
 				if (TipoDia.ASSEMBLEIA == dia.getTipoDia()) {
 					if (tpEspecial == null) {
@@ -233,8 +233,7 @@ public class ReportCommon {
 			for (DesignacaoEscola designacaoEscola : designacaoesEscola) {
 				if (designacaoEscola.getDia().equals(dia)) {
 					if (dto == null || !dto.getDataReuniao().equals(designacaoEscola.getDia().getDia())) {
-						dto = new DesignacaoEscolaDTO();
-						dto.setDataReuniao(designacaoEscola.getDia().getDia());
+						dto = this.criaDesignacaoEscola(dia, sala, vidaMinisterios);
 					}
 					
 					if (designacaoEscola.getNumero() == -1) {
@@ -456,5 +455,19 @@ public class ReportCommon {
 		}
 		
 		return abreviacao;
+	}
+	
+	private DesignacaoEscolaDTO criaDesignacaoEscola(DiaReuniao diaReuniao, String sala, List<VidaMinisterio> vidaMinisterios) {
+		DesignacaoEscolaDTO dto = new DesignacaoEscolaDTO();
+		dto.setDataReuniao(diaReuniao.getDia());
+		
+		if ("A".equalsIgnoreCase(sala)) {
+			VidaMinisterio vidaMinisterio = vidaMinisterios.stream().filter(v->v.getDia().equals(diaReuniao)).findFirst().orElse(null);
+			
+			dto.setPresidente(vidaMinisterio.getPresidente());
+			dto.setDesigVideos(vidaMinisterio.getDesgApresentacao());
+		}
+		
+		return dto;
 	}
 }

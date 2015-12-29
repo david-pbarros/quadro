@@ -17,6 +17,8 @@ public class DesignacaoEscolaDTO {
 	private String discurso;
 	private String orador;
 	private String oradorJoias;
+	private String presidente;
+	private String desigVideos;
 	private boolean recapitulacao;
 	private boolean visita;
 	private boolean videos;
@@ -110,6 +112,20 @@ public class DesignacaoEscolaDTO {
 	}
 	public void setOradorJoias(String oradorJoias) {
 		this.oradorJoias = oradorJoias;
+	}
+	
+	public String getPresidente() {
+		return presidente;
+	}
+	public void setPresidente(String presidente) {
+		this.presidente = presidente;
+	}
+	
+	public String getDesigVideos() {
+		return desigVideos;
+	}
+	public void setDesigVideos(String desigVideos) {
+		this.desigVideos = desigVideos;
 	}
 	
 	public boolean isRecapitulacao() {

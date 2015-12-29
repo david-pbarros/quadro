@@ -19,6 +19,7 @@ import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.Genero;
 import br.com.dbcorp.quadro.entidades.Pessoa;
+import br.com.dbcorp.quadro.entidades.VidaMinisterio;
 import br.com.dbcorp.quadro.ui.InternalUI;
 import br.com.dbcorp.quadro.ui.Params;
 
@@ -42,6 +43,23 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 				.setParameter("sala", sala);
 		
 		return query.getResultList();
+	}
+	
+	public VidaMinisterio obterVidaMinisterio(DiaReuniao diaReuniao) {
+		Query query = DataBaseHelper.createQuery("FROM VidaMinisterio d WHERE d.dia = :dia")
+				.setParameter("dia", diaReuniao);
+		
+		VidaMinisterio vidaMinisterio;
+		
+		try {
+			vidaMinisterio = (VidaMinisterio) query.getSingleResult();
+			
+		} catch (NoResultException ex) {
+			vidaMinisterio = new VidaMinisterio();
+			vidaMinisterio.setDia(diaReuniao);
+		}
+		
+		return vidaMinisterio;
 	}
 	
 	public List<DesignacaoEscola> obterDesignacaoes(DiaReuniao diaReuniao) {
@@ -75,6 +93,17 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 			if (genero != null) {
 				this.salvaPessoa(designacao.getEstudante(), genero);
 				this.salvaPessoa(designacao.getAjudante(), genero);
+			}
+		}
+	}
+	
+	public void atualizarVidaMinisterios(List<VidaMinisterio> vidaMinisterios) {
+		for (VidaMinisterio vidaMinisterio : vidaMinisterios) {
+			if (vidaMinisterio.getId() == 0) {
+				DataBaseHelper.persist(vidaMinisterio);
+				
+			} else {
+				DataBaseHelper.merge(vidaMinisterio);
 			}
 		}
 	}
@@ -231,6 +260,10 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 		}
 	}
 	
+	private void atualizaDia(DiaReuniao dia) {
+		DataBaseHelper.merge(dia);
+	}
+	
 	private DesignacaoEscola obtemDesignacaoSalaumero(List<DesignacaoEscola> designacoes, String sala, int numero) {
 		if (designacoes != null) {
 			for (int i = 0; i < designacoes.size(); i++) {
@@ -245,10 +278,6 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 		}
 		
 		return null;
-	}
-	
-	private void atualizaDia(DiaReuniao dia) {
-		DataBaseHelper.merge(dia);
 	}
 	
 	private String capitalize(String original) {

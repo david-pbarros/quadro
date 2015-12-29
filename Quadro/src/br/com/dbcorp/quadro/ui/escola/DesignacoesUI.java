@@ -23,6 +23,7 @@ import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.Genero;
 import br.com.dbcorp.quadro.entidades.Mes;
+import br.com.dbcorp.quadro.entidades.VidaMinisterio;
 import br.com.dbcorp.quadro.gerenciador.DesignacaoEscolaGerenciador;
 import br.com.dbcorp.quadro.report.ReportCommon;
 import br.com.dbcorp.quadro.ui.DScrollPane;
@@ -42,6 +43,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 	private List<DiaReuniao> diasReuniao;
 	private List<String> homens;
 	private List<String> mulheres;
+	private List<VidaMinisterio> vidaMinisterios;
 	private Mes mesDesignacao;
 	
 	private JPanel containerPanel;
@@ -63,6 +65,8 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		this.cbSala = new JComboBox(new String[]{"A", "B"});
 		this.cbSala.setPreferredSize(new Dimension(50, 25));
 		this.cbSala.addItemListener(this);
+		
+		this.vidaMinisterios = new ArrayList<>();
 		
 		this.gerenciador = new DesignacaoEscolaGerenciador();
 		this.homens = this.gerenciador.listarNomesPessoas(Genero.M);
@@ -230,7 +234,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		
 		String sala = (String) this.cbSala.getSelectedItem();
 		
-		int semanaHeight = "A".equals(sala) ? 290 : 236;
+		int semanaHeight = "A".equals(sala) ? 324 : 236;//290
 		
 		for (DiaReuniao diaReuniao : this.diasReuniao) {
 			SemanaMelhoreUI semana = null;
@@ -239,7 +243,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 			this.designacaoes.addAll(designacaoEscola);
 			
 			if ("A".equals(sala)) {
-				semana = new SemanaMelhoreAUI(designacaoEscola, diaReuniao, this.homens, this.mulheres);
+				semana = new SemanaMelhoreAUI(designacaoEscola, this.gerenciador.obterVidaMinisterio(diaReuniao), diaReuniao, this.homens, this.mulheres);
 				
 			} else {
 				semana = new SemanaMelhoreBUI(this.temasSalaB(designacaoEscola), diaReuniao, this.homens, this.mulheres);
@@ -273,13 +277,21 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 	}
 	
 	private void salvar() {
-		List<DesignacaoEscola> designacoes = new ArrayList<DesignacaoEscola>();
+		List<DesignacaoEscola> designacoes = new ArrayList<>();
+		this.vidaMinisterios.clear();
 		
 		for (SemanaMelhoreUI semana : this.semanas) {
 			designacoes.addAll(semana.obterDesignacoes());
+			
+			VidaMinisterio vidaMinisterio = semana.obterVidaMinisterio();
+			
+			if (vidaMinisterio != null) {
+				this.vidaMinisterios.add(semana.obterVidaMinisterio());
+			}
 		}
 		
 		this.gerenciador.atualizarDesignacoes(designacoes);
+		this.gerenciador.atualizarVidaMinisterios(this.vidaMinisterios);
 		
 		this.carregarMes();
 		
@@ -302,6 +314,6 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 	}
 	
 	private void imprimir() {
-		ReportCommon.getInstance().gerarEscola(this.designacaoes, this.mesDesignacao, (String) this.cbSala.getSelectedItem());
+		ReportCommon.getInstance().gerarEscola(this.designacaoes, this.mesDesignacao, (String) this.cbSala.getSelectedItem(), this.vidaMinisterios);
 	}
 }

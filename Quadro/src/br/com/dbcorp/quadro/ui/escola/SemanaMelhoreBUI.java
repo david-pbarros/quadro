@@ -12,12 +12,24 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
+import br.com.dbcorp.quadro.entidades.VidaMinisterio;
 
 public class SemanaMelhoreBUI extends SemanaMelhoreUI {
 	private static final long serialVersionUID = -8380400006598649332L;
 	
 	public SemanaMelhoreBUI(List<DesignacaoEscola> designacoes, DiaReuniao diaReuniao, List<String> homens, List<String> mulheres) {
-		this.inicializar(designacoes, diaReuniao, homens, mulheres);
+		FormLayout layout = new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("right:6dlu"),
+				ColumnSpec.decode("default:grow"),
+				ColumnSpec.decode("left:6dlu"),},
+			new RowSpec[] {
+				RowSpec.decode("top:6dlu"),
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				RowSpec.decode("bottom:3dlu"),});
+		
+		this.inicializar(designacoes, null, diaReuniao, homens, mulheres, layout);
 		
 		this.setMinimumSize(new Dimension(931, 230));
 		this.setPreferredSize(new Dimension(1200, 230));
@@ -31,6 +43,19 @@ public class SemanaMelhoreBUI extends SemanaMelhoreUI {
 		}
 		
 		return designacoes;
+	}
+	
+	@Override
+	protected void inicializar(List<DesignacaoEscola> designacoes, VidaMinisterio vidaMinisterio, DiaReuniao diaReuniao, List<String> homens, List<String> mulheres, FormLayout layout) {
+		super.inicializar(designacoes, vidaMinisterio, diaReuniao, homens, mulheres, layout);
+		
+		add(this.topSeparator, "2, 1");
+		add(this.headerPanel, "2, 2, fill, fill");
+		add(this.rightSep, "1, 1, 1, 5");
+		add(this.leftSep, "3, 1, 1, 5");
+		add(this.downSep, "2, 5");
+		add(this.tesourosPanel, "2, 3, fill, fill");
+		add(this.facaMelhorPanel, "2, 4, fill, fill");
 	}
 	
 	@Override

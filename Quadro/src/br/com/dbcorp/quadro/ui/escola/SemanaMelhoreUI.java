@@ -18,6 +18,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
+import br.com.dbcorp.quadro.entidades.VidaMinisterio;
 import br.com.dbcorp.quadro.ui.DTextField;
 import br.com.dbcorp.quadro.ui.Params;
 import br.com.dbcorp.quadro.ui.ReadOnlyCheckBox;
@@ -26,6 +27,13 @@ public abstract class SemanaMelhoreUI extends JPanel {
 	private static final long serialVersionUID = -564622418425978784L;
 	
 	protected JPanel tesourosPanel;
+	protected JPanel headerPanel;
+	protected JPanel facaMelhorPanel;
+	
+	protected JSeparator rightSep = new JSeparator();
+	protected JSeparator topSeparator = new JSeparator();
+	protected JSeparator leftSep = new JSeparator();
+	protected JSeparator downSep = new JSeparator();
 	
 	protected ReadOnlyCheckBox cbReca;
 	protected ReadOnlyCheckBox cbAss;
@@ -33,7 +41,6 @@ public abstract class SemanaMelhoreUI extends JPanel {
 	protected ReadOnlyCheckBox cbVid;
 	protected JTextField txData;
 	protected DiaReuniao diaReuniao;
-	
 	
 	protected JTextField txLeituraFonte;
 	protected JTextField txLeitor;
@@ -44,7 +51,8 @@ public abstract class SemanaMelhoreUI extends JPanel {
 	protected JTextField txAjudVisita;
 	protected JTextField txAjudReVisita;
 	protected JTextField txAjudEstudo;
-
+	
+	protected VidaMinisterio vidaMinisterio;
 	protected List<DesignacaoEscola> designacoes;
 	protected List<String> homens;
 	protected List<String> mulheres;
@@ -68,19 +76,14 @@ public abstract class SemanaMelhoreUI extends JPanel {
 		
 	}
 	
-	protected void inicializar(List<DesignacaoEscola> designacoes, DiaReuniao diaReuniao, List<String> homens, List<String> mulheres) {
-		setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("right:6dlu"),
-				ColumnSpec.decode("default:grow"),
-				ColumnSpec.decode("left:6dlu"),},
-			new RowSpec[] {
-				RowSpec.decode("top:6dlu"),
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				RowSpec.decode("bottom:3dlu"),}));
+	public VidaMinisterio obterVidaMinisterio() {
+		return this.vidaMinisterio;
+	}
+	
+	protected void inicializar(List<DesignacaoEscola> designacoes, VidaMinisterio vidaMinisterio, DiaReuniao diaReuniao, List<String> homens, List<String> mulheres, FormLayout layout) {
+		setLayout(layout);
 		
-		JPanel headerPanel = new JPanel();
+		this.headerPanel = new JPanel();
 		
 		headerPanel.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("default:grow"),
@@ -95,13 +98,10 @@ public abstract class SemanaMelhoreUI extends JPanel {
 			new RowSpec[] {
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		JSeparator rightSep = new JSeparator();
-		JSeparator topSeparator = new JSeparator();
-		JSeparator leftSep = new JSeparator();
-		JSeparator downSep = new JSeparator();
-
-		rightSep.setOrientation(SwingConstants.VERTICAL);
-		leftSep.setOrientation(SwingConstants.VERTICAL);
+		this.rightSep.setOrientation(SwingConstants.VERTICAL);
+		this.leftSep.setOrientation(SwingConstants.VERTICAL);
+		
+		this.vidaMinisterio = vidaMinisterio;
 		
 		this.designacoes = designacoes;
 		this.diaReuniao = diaReuniao;
@@ -136,19 +136,19 @@ public abstract class SemanaMelhoreUI extends JPanel {
 		dataPanel.add(new JLabel("Dia:"));
 		dataPanel.add(this.txData);
 		
-		headerPanel.add(dataPanel, "1, 1, fill, fill");
-		headerPanel.add(this.cbReca, "3, 1");
-		headerPanel.add(this.cbVid, "5, 1");
-		headerPanel.add(this.cbAss, "7, 1");
-		headerPanel.add(this.cbVis, "9, 1");
+		this.headerPanel.add(dataPanel, "1, 1, fill, fill");
+		this.headerPanel.add(this.cbReca, "3, 1");
+		this.headerPanel.add(this.cbVid, "5, 1");
+		this.headerPanel.add(this.cbAss, "7, 1");
+		this.headerPanel.add(this.cbVis, "9, 1");
 		
 		this.tesourosPanel = new JPanel();
 		this.tesourosPanel.setBorder(new TitledBorder(null, "Tesouros da Palavra de Deus", TitledBorder.LEFT, TitledBorder.TOP, null, null));
 		this.setTesouroPanel();
 		
-		JPanel facaMelhorPanel = new JPanel();
-		facaMelhorPanel.setBorder(new TitledBorder(null, "Fa\u00E7a Seu Melhor no Minist\u00E9rio", TitledBorder.LEFT, TitledBorder.TOP, null, null));
-		facaMelhorPanel.setLayout(new FormLayout(new ColumnSpec[] {
+		this.facaMelhorPanel = new JPanel();
+		this.facaMelhorPanel.setBorder(new TitledBorder(null, "Fa\u00E7a Seu Melhor no Minist\u00E9rio", TitledBorder.LEFT, TitledBorder.TOP, null, null));
+		this.facaMelhorPanel.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
@@ -163,25 +163,17 @@ public abstract class SemanaMelhoreUI extends JPanel {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		facaMelhorPanel.add(new JLabel("Estudante:"), "3, 1, center, default");
-		facaMelhorPanel.add(new JLabel("Ajudante:"), "5, 1, center, default");
-		facaMelhorPanel.add(new JLabel("Visita:"), "1, 3, right, default");
-		facaMelhorPanel.add(new JLabel("Revisita:"), "1, 5, right, default");
-		facaMelhorPanel.add(new JLabel("Estudo:"), "1, 7, right, default");
-		facaMelhorPanel.add(this.txEstdVisita, "3, 3, fill, default");
-		facaMelhorPanel.add(this.txAjudVisita, "5, 3, fill, default");
-		facaMelhorPanel.add(this.txEstdReVisita, "3, 5, fill, default");
-		facaMelhorPanel.add(this.txAjudReVisita, "5, 5, fill, default");
-		facaMelhorPanel.add(this.txEstdEstudo, "3, 7, fill, default");
-		facaMelhorPanel.add(this.txAjudEstudo, "5, 7, fill, default");
-		
-		add(topSeparator, "2, 1");
-		add(headerPanel, "2, 2, fill, fill");
-		add(rightSep, "1, 1, 1, 5");
-		add(leftSep, "3, 1, 1, 5");
-		add(downSep, "2, 5");
-		add(this.tesourosPanel, "2, 3, fill, fill");
-		add(facaMelhorPanel, "2, 4, fill, fill");
+		this.facaMelhorPanel.add(new JLabel("Estudante:"), "3, 1, center, default");
+		this.facaMelhorPanel.add(new JLabel("Ajudante:"), "5, 1, center, default");
+		this.facaMelhorPanel.add(new JLabel("Visita:"), "1, 3, right, default");
+		this.facaMelhorPanel.add(new JLabel("Revisita:"), "1, 5, right, default");
+		this.facaMelhorPanel.add(new JLabel("Estudo:"), "1, 7, right, default");
+		this.facaMelhorPanel.add(this.txEstdVisita, "3, 3, fill, default");
+		this.facaMelhorPanel.add(this.txAjudVisita, "5, 3, fill, default");
+		this.facaMelhorPanel.add(this.txEstdReVisita, "3, 5, fill, default");
+		this.facaMelhorPanel.add(this.txAjudReVisita, "5, 5, fill, default");
+		this.facaMelhorPanel.add(this.txEstdEstudo, "3, 7, fill, default");
+		this.facaMelhorPanel.add(this.txAjudEstudo, "5, 7, fill, default");
 		
 		this.setCampos();
 	}
