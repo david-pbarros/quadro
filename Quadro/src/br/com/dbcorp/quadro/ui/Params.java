@@ -52,8 +52,8 @@ public class Params {
 					System.out.println("chave: " + key + " valor: " + props.get(key));
 				}
 	
-				props.put("verionNumber", 300);
-				props.put("versionName", "3.0.0");
+				props.put("verionNumber", 310);
+				props.put("versionName", "3.1.0");
 				
 			} catch (Exception e) {
 				Log.getInstance().error(e);
