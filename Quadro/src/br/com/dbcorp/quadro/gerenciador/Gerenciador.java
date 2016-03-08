@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 import br.com.dbcorp.quadro.DataBaseHelper;
@@ -89,6 +90,9 @@ public class Gerenciador {
 			try {
 				query.getSingleResult();
 			
+			} catch (NonUniqueResultException ex) {
+				return;
+				
 			} catch(NoResultException ex) {
 				Pessoa pessoa = new Pessoa();
 				pessoa.setGenero(genero);
