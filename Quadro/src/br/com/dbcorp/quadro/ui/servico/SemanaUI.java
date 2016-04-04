@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -26,6 +27,7 @@ import br.com.dbcorp.quadro.entidades.Servico;
 import br.com.dbcorp.quadro.ui.DTextField;
 import br.com.dbcorp.quadro.ui.Params;
 import br.com.dbcorp.quadro.ui.ReadOnlyCheckBox;
+import com.jgoodies.forms.layout.Sizes;
 
 public class SemanaUI extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 8298632485665436526L;
@@ -43,6 +45,13 @@ public class SemanaUI extends JPanel implements ActionListener {
 	protected List<String> pessoas;
 	
 	private List<DesignacaoServicoUI> designacaosServicoUI;
+	private JTextField txOraIni;
+	private JTextField txPresidente;
+	private JTextField txDiscurso;
+	private JTextField txOraDisc;
+	private JTextField txJoias;
+	
+	private int basicHeight = 279;
 	
 	public SemanaUI(DiaReuniao diaReuniao, Servico servico, DesignacoesUI parent) {
 		setLayout(new FormLayout(new ColumnSpec[] {
@@ -61,7 +70,9 @@ public class SemanaUI extends JPanel implements ActionListener {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(2dlu;default):grow"),
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("default:grow"),
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				RowSpec.decode("6dlu"),}));
@@ -73,35 +84,30 @@ public class SemanaUI extends JPanel implements ActionListener {
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
-		add(separator, "1, 1, 1, 9, right, default");
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
-		add(separator_1, "9, 1, 1, 9, left, default");
+		
+		JPanel tesourosPanel = new JPanel();
+		tesourosPanel.setBorder(new TitledBorder(null, "Tesouros da Palavra", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		
 		JPanel panel = new JPanel();
-		add(panel, "3, 4, 5, 1, fill, fill");
 		panel.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("50dlu"),
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
 				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(200dlu;default)"),},
+				new ColumnSpec(ColumnSpec.FILL, Sizes.bounded(Sizes.DEFAULT, Sizes.constant("100dlu", true), Sizes.constant("100dlu", true)), 0),},
 			new RowSpec[] {
-				FormSpecs.DEFAULT_ROWSPEC,}));
+				RowSpec.decode("bottom:default"),}));
 		
-		JLabel lblNewLabel = new JLabel("Tema:");
-		panel.add(lblNewLabel, "4, 1");
-		
-		JLabel lblNewLabel_1 = new JLabel("Orador:");
-		panel.add(lblNewLabel_1, "6, 1");
+		panel.add(new JLabel("Tema:"), "4, 1");
+		panel.add(new JLabel("Orador:"), "6, 1");
 		
 		JSeparator separator_2 = new JSeparator();
-		add(separator_2, "2, 9, 7, 1, default, bottom");
-		
 		JSeparator separator_3 = new JSeparator();
-		add(separator_3, "2, 1, 7, 1, default, top");
 		
 		this.txData = new JTextField();
 		this.txData.setEnabled(false);
@@ -111,6 +117,14 @@ public class SemanaUI extends JPanel implements ActionListener {
 		this.chVisita = new ReadOnlyCheckBox("Vis. Superintendente.");
 		
 		this.txOracao = new DTextField(this.pessoas);
+		this.txOraIni = new DTextField(this.pessoas);
+		this.txPresidente = new DTextField(this.pessoas);
+		this.txDiscurso = new JTextField();
+		this.txOraDisc = new DTextField(this.pessoas);
+		this.txJoias = new DTextField(this.pessoas);
+		
+		JLabel lblEncontreJiasEspirituais = new JLabel("Encontre J\u00F3ias Espirituais:");
+		lblEncontreJiasEspirituais.setToolTipText("Orador");
 		
 		this.btnAdicionar = new JButton(Params.btNovoImg());
 		this.btnAdicionar.setToolTipText("Adicionar Nova Designação");
@@ -121,25 +135,90 @@ public class SemanaUI extends JPanel implements ActionListener {
 		dataPanel.add(this.txData);
 		dataPanel.add(chAssembleia);
 		dataPanel.add(chVisita);
-		dataPanel.add(this.btnAdicionar);
+		//dataPanel.add(this.btnAdicionar);
 		
 		this.designacoesPanel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) designacoesPanel.getLayout();
-		flowLayout.setVgap(0);
 		flowLayout.setAlignment(FlowLayout.LEFT);
+		flowLayout.setVgap(0);
 		flowLayout.setHgap(0);
 		
+		JPanel cabecalhoPanel = new JPanel();
+		cabecalhoPanel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(200dlu;min)"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(200dlu;min)"),},
+			new RowSpec[] {
+				FormSpecs.DEFAULT_ROWSPEC,}));
+		
+		cabecalhoPanel.add(new JLabel("Ora\u00E7\u00E3o:"), "3, 1, right, top");
+		cabecalhoPanel.add(this.txOraIni, "5, 1, fill, default");
+		cabecalhoPanel.add(new JLabel("Presidente:"), "7, 1, right, default");
+		cabecalhoPanel.add(this.txPresidente, "9, 1, fill, default");
+		
+		tesourosPanel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(200dlu;min)"),},
+			new RowSpec[] {
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
+		
+		tesourosPanel.add(new JLabel("Discruso Tema:"), "1, 1, right, default");
+		tesourosPanel.add(this.txDiscurso, "3, 1, fill, default");
+		tesourosPanel.add(new JLabel("Orador:"), "5, 1, right, default");
+		tesourosPanel.add(this.txOraDisc, "7, 1, fill, default");
+		tesourosPanel.add(lblEncontreJiasEspirituais, "1, 3, right, default");
+		tesourosPanel.add(txJoias, "3, 3, 5, 1, fill, default");
+		
+		JPanel nossaVidaPanel = new JPanel();
+		nossaVidaPanel.setBorder(new TitledBorder(null, "Nossa Vida Crist\u00E3", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		nossaVidaPanel.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,},
+			new RowSpec[] {
+				RowSpec.decode("fill:default"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("max(2dlu;min):grow"),}));
+		
+		nossaVidaPanel.add(panel, "1, 1, fill, center");
+		nossaVidaPanel.add(this.btnAdicionar, "3, 1");
+		nossaVidaPanel.add(this.designacoesPanel, "1, 3, 3, 1, fill, fill");
+		
+		add(separator, "1, 1, 1, 11, right, default");
+		add(separator_1, "9, 1, 1, 11, left, default");
+		add(nossaVidaPanel, "3, 8, 5, 1, fill, fill");
+		//add(panel, "3, 10, 5, 1, fill, fill");
+		add(separator_2, "2, 11, 7, 1, default, bottom");
+		add(separator_3, "2, 1, 7, 1, default, top");
 		add(dataPanel, "3, 2, 5, 1, fill, fill");
-		add(this.designacoesPanel, "3, 6, 5, 1, fill, fill");
-		add(new JLabel("Ora\u00E7\u00E3o:"), "3, 8, right, default");
-		add(this.txOracao, "5, 8, fill, default");
+		add(cabecalhoPanel, "3, 4, 5, 1, fill, fill");
+		add(tesourosPanel, "3, 6, 5, 1, fill, fill");
+		//add(this.designacoesPanel, "3, 12, 5, 1, fill, fill");
+		add(new JLabel("Ora\u00E7\u00E3o:"), "3, 10, right, default");
+		add(this.txOracao, "5, 10, fill, default");
 		
 		this.setCampos();
 		
-		this.semanaHeight = 155;
+		this.semanaHeight = 279;//this.basicHeight;
 		
-		this.setMinimumSize(new Dimension(500, 107));
-		this.setPreferredSize(new Dimension(950, 116));
+		Dimension d = new Dimension(950, this.semanaHeight);
+		
+		this.setPreferredSize(new Dimension(950, 340));
+		this.setMinimumSize(d);
 	}
 	
 	@Override
@@ -177,14 +256,20 @@ public class SemanaUI extends JPanel implements ActionListener {
 	}
 	
 	public int getSemanaHeight() {
-		return this.semanaHeight;
+		if (this.servico.getDesignacoes() == null || this.servico.getDesignacoes().isEmpty()) {
+			return this.semanaHeight;
+			
+		} else {
+			return this.semanaHeight - 60;
+		}
 	}
 	
 	public void setHeight() {
 		if (this.servico.getDesignacoes() != null) {
-			int totalLinhas = 37 * (this.servico.getDesignacoes().size() - 1);
 			
-			this.semanaHeight = 155 + totalLinhas;
+			int totalLinhas = 36 * (this.servico.getDesignacoes().size() - 1);
+			
+			this.semanaHeight = this.basicHeight + totalLinhas;
 			
 			this.setPreferredSize(new Dimension(950, this.semanaHeight));
 		}
@@ -229,6 +314,15 @@ public class SemanaUI extends JPanel implements ActionListener {
 		if (this.chAssembleia.isSelected() || this.chVisita.isSelected()) {
 			this.txOracao.setText("");
 			this.txOracao.setEnabled(false);
+			this.txDiscurso.setText("");
+			this.txDiscurso.setEnabled(false);
+			this.txOraDisc.setText("");
+			this.txOraDisc.setEnabled(false);
+			this.txOraIni.setText("");
+			this.txOraIni.setEnabled(false);
+			this.txJoias.setText("");
+			this.txJoias.setEnabled(false);
+			
 			this.btnAdicionar.setEnabled(false);
 			
 			if (this.servico.getDesignacoes() != null) {

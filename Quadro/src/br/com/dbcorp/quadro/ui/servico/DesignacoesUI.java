@@ -155,10 +155,8 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		int height = 0;
 				
 		for (SemanaUI semanaUI : this.semanas) {
-			height += semanaUI.getSemanaHeight();
+			height += (67 +semanaUI.getSemanaHeight());
 		}
-		
-		height += 6 * this.semanas.size();
 		
 		this.mesPanel.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, height));
 		
