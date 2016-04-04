@@ -172,7 +172,9 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		if (this.diaPar != null) {
 			this.diaPar.diaPar = this;
 			
-			this.diaPar.enableByPar();
+			if (event.getSource() == this.chVisita || event.getSource() == this.chAssembleia) {
+				this.diaPar.enableByPar();
+			}
 		}
 		
 		if (event.getSource() == this.chAssembleia && this.chAssembleia.isSelected()) {
@@ -181,7 +183,7 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 			disableChecks(this.chAssembleia);
 			
 			if (this.diaPar != null) {
-				this.diaPar.disableByPar();
+				this.diaPar.disableByPar(1);
 			}
 		} else if (event.getSource() == this.chRecaptulacao && this.chRecaptulacao.isSelected()) {
 			tipo = TipoDia.RECAPITULACAO;
@@ -190,6 +192,10 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		} else if (event.getSource() == this.chVisita && this.chVisita.isSelected()) {
 			tipo = TipoDia.VISITA;
 			disableChecks(this.chVisita);
+			
+			if (this.diaPar != null) {
+				this.diaPar.disableByPar(2);
+			}
 			
 		} else if (event.getSource() == this.chSemReuniao && this.chSemReuniao.isSelected()) {
 			tipo = TipoDia.SEM_REUNIAO;
@@ -209,11 +215,11 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		this.diareuniao.setDescricao(this.txDescricao.getText());
 	}
 	
-	private void disableByPar() {
-		this.descPanel.setVisible(true);
-		disableChecks(this.chAssembleia);
+	private void disableByPar(int tipo) {
+		this.descPanel.setVisible(tipo == 1);
+		disableChecks(tipo == 1 ? this.chAssembleia : this.chVisita);
 		
-		this.diareuniao.setTipoDia(TipoDia.ASSEMBLEIA);
+		this.diareuniao.setTipoDia(tipo == 1 ? TipoDia.ASSEMBLEIA : TipoDia.VISITA);
 	}
 	
 	private void enableByPar() {
@@ -225,6 +231,7 @@ public class DiaPanel extends JPanel implements ActionListener, DocumentListener
 		this.descPanel.setVisible(false);
 		
 		this.chAssembleia.setSelected(false);
+		this.chVisita.setSelected(false);
 		
 		this.diareuniao.setTipoDia(null);
 		this.diareuniao.setDescricao(null);
