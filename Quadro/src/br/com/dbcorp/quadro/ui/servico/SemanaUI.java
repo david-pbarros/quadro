@@ -135,7 +135,6 @@ public class SemanaUI extends JPanel implements ActionListener {
 		dataPanel.add(this.txData);
 		dataPanel.add(chAssembleia);
 		dataPanel.add(chVisita);
-		//dataPanel.add(this.btnAdicionar);
 		
 		this.designacoesPanel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) designacoesPanel.getLayout();
@@ -248,6 +247,11 @@ public class SemanaUI extends JPanel implements ActionListener {
 			}
 			
 			this.servico.setOracao(this.txOracao.getText());
+			this.servico.setOracInicial(this.txOraIni.getText());
+			this.servico.setPresidente(this.txPresidente.getText());
+			this.servico.setTemaDisc(this.txDiscurso.getText());
+			this.servico.setOrador(this.txOraDisc.getText());
+			this.servico.setJoias(this.txJoias.getText());
 		}
 
 		this.servico.setDiaReuniao(this.diaReuniao);
@@ -302,6 +306,11 @@ public class SemanaUI extends JPanel implements ActionListener {
 		}
 		
 		this.txOracao.setText(this.servico.getOracao());
+		this.txOraIni.setText(this.servico.getOracInicial());
+		this.txPresidente.setText(this.servico.getPresidente());
+		this.txDiscurso.setText(this.servico.getTemaDisc());
+		this.txOraDisc.setText(this.servico.getOrador());
+		this.txJoias.setText(this.servico.getJoias());
 		
 		if (this.servico.getDesignacoes() != null) {
 			for (DesignacaoServico designacaoServico : this.servico.getDesignacoes()) {
@@ -322,6 +331,8 @@ public class SemanaUI extends JPanel implements ActionListener {
 			this.txOraIni.setEnabled(false);
 			this.txJoias.setText("");
 			this.txJoias.setEnabled(false);
+			this.txPresidente.setText("");
+			this.txPresidente.setEnabled(false);
 			
 			this.btnAdicionar.setEnabled(false);
 			

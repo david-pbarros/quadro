@@ -15,6 +15,12 @@ import javax.persistence.OneToMany;
 public class Servico {
 
 	private int id;
+	private String oracInicial;
+	private String presidente;
+	private String temaDisc;
+	private String orador;
+	private String joias;
+	
 	private String oracao;
 	private String cantico;
 	private DiaReuniao diaReuniao;
@@ -26,6 +32,42 @@ public class Servico {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+	public String getOracInicial() {
+		return oracInicial;
+	}
+	public void setOracInicial(String oracInicial) {
+		this.oracInicial = oracInicial;
+	}
+	
+	public String getPresidente() {
+		return presidente;
+	}
+	public void setPresidente(String presidente) {
+		this.presidente = presidente;
+	}
+	
+	public String getTemaDisc() {
+		return temaDisc;
+	}
+	public void setTemaDisc(String temaDisc) {
+		this.temaDisc = temaDisc;
+	}
+	
+	public String getOrador() {
+		return orador;
+	}
+	public void setOrador(String orador) {
+		this.orador = orador;
+	}
+	
+	public String getJoias() {
+		return joias;
+	}
+	public void setJoias(String joias) {
+		this.joias = joias;
 	}
 	
 	public String getOracao() {
