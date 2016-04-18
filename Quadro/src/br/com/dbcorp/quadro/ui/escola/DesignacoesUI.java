@@ -234,7 +234,7 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 		
 		String sala = (String) this.cbSala.getSelectedItem();
 		
-		int semanaHeight = "A".equals(sala) ? 324 : 236;//290
+		int semanaHeight = "A".equals(sala) ? 254 : 236;//290
 		
 		for (DiaReuniao diaReuniao : this.diasReuniao) {
 			SemanaMelhoreUI semana = null;
@@ -253,6 +253,8 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 			this.mesPanel.add(semana);
 		}
 
+		semanaHeight = "A".equals(sala) ? semanaHeight + 8 : semanaHeight;
+		
 		this.mesPanel.setPreferredSize(new Dimension(Params.INTERNAL_WIDTH, semanaHeight * diasReuniao.size()));
 		
 		this.revalidate();
