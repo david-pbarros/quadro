@@ -306,6 +306,13 @@ public class ReportCommon {
 					dto.setTema(designacao.getTema());
 					dto.setTempo(designacao.getMinutos());
 					dto.setOracao(this.nomeAbreviado(servico.getOracao()));
+					
+					//fixos por dia
+					dto.setOracaoIni(servico.getOracInicial());
+					dto.setPresidente(servico.getPresidente());
+					dto.setTemaDiscurso(servico.getTemaDisc());
+					dto.setOradorDiscruso(servico.getOrador());
+					dto.setOradorJoias(servico.getJoias());
 	
 					servicosDTO.add(dto);
 				}

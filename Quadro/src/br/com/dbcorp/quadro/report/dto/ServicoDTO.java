@@ -12,6 +12,14 @@ public class ServicoDTO {
 	private String oracao;
 	private boolean visita;
 	
+	
+	
+	private String oracaoIni;
+	private String presidente;
+	private String temaDiscurso;
+	private String oradorDiscruso;
+	private String oradorJoias;
+	
 	public LocalDate getDataReuniao() {
 		return dataReuniao;
 	}
@@ -59,5 +67,44 @@ public class ServicoDTO {
 	}
 	public void setVisita(boolean visita) {
 		this.visita = visita;
+	}
+	
+	
+	
+	
+	
+	public String getOracaoIni() {
+		return oracaoIni;
+	}
+	public void setOracaoIni(String oracaoIni) {
+		this.oracaoIni = oracaoIni;
+	}
+	
+	public String getPresidente() {
+		return presidente;
+	}
+	public void setPresidente(String presidente) {
+		this.presidente = presidente;
+	}
+	
+	public String getTemaDiscurso() {
+		return temaDiscurso;
+	}
+	public void setTemaDiscurso(String temaDiscurso) {
+		this.temaDiscurso = temaDiscurso;
+	}
+	
+	public String getOradorDiscruso() {
+		return oradorDiscruso;
+	}
+	public void setOradorDiscruso(String oradorDiscruso) {
+		this.oradorDiscruso = oradorDiscruso;
+	}
+	
+	public String getOradorJoias() {
+		return oradorJoias;
+	}
+	public void setOradorJoias(String oradorJoias) {
+		this.oradorJoias = oradorJoias;
 	}
 }
