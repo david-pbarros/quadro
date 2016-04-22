@@ -236,16 +236,7 @@ public class ReportCommon {
 						dto = this.criaDesignacaoEscola(dia, sala, vidaMinisterios);
 					}
 					
-					if (designacaoEscola.getNumero() == -1) {
-						dto.setDiscurso(designacaoEscola.getTema());
-						dto.setOrador(this.nomeAbreviado(designacaoEscola.getEstudante()));
-						dto.setRecapitulacao(TipoDia.RECAPITULACAO == dia.getTipoDia());
-					
-					} else if (designacaoEscola.getNumero() == 0) {
-						dto.setOradorJoias(this.nomeAbreviado(designacaoEscola.getEstudante()));
-						dto.setRecapitulacao(TipoDia.RECAPITULACAO == dia.getTipoDia());
-						
-					} else if (designacaoEscola.getNumero() == 1) {
+					if (designacaoEscola.getNumero() == 1) {
 						dto.setLeitura(designacaoEscola.getTema());
 						dto.setLeitor(this.nomeAbreviado(designacaoEscola.getEstudante()));
 						dto.setVideos(TipoDia.VIDEOS == dia.getTipoDia());
@@ -464,7 +455,6 @@ public class ReportCommon {
 		if ("A".equalsIgnoreCase(sala)) {
 			VidaMinisterio vidaMinisterio = vidaMinisterios.stream().filter(v->v.getDia().equals(diaReuniao)).findFirst().orElse(null);
 			
-			dto.setPresidente(vidaMinisterio.getPresidente());
 			dto.setDesigVideos(vidaMinisterio.getDesgApresentacao());
 		}
 		

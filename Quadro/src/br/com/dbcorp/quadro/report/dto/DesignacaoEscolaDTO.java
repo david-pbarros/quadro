@@ -14,10 +14,6 @@ public class DesignacaoEscolaDTO {
 	private String ajuVisita;
 	private String ajuRevisita;
 	private String ajuEstudo;
-	private String discurso;
-	private String orador;
-	private String oradorJoias;
-	private String presidente;
 	private String desigVideos;
 	private boolean recapitulacao;
 	private boolean visita;
@@ -92,35 +88,6 @@ public class DesignacaoEscolaDTO {
 	public void setAjuEstudo(String ajuEstudo) {
 		this.ajuEstudo = ajuEstudo;
 	}
-	
-	public String getDiscurso() {
-		return discurso;
-	}
-	public void setDiscurso(String discurso) {
-		this.discurso = discurso;
-	}
-	
-	public String getOrador() {
-		return orador;
-	}
-	public void setOrador(String orador) {
-		this.orador = orador;
-	}
-	
-	public String getOradorJoias() {
-		return oradorJoias;
-	}
-	public void setOradorJoias(String oradorJoias) {
-		this.oradorJoias = oradorJoias;
-	}
-	
-	public String getPresidente() {
-		return presidente;
-	}
-	public void setPresidente(String presidente) {
-		this.presidente = presidente;
-	}
-	
 	public String getDesigVideos() {
 		return desigVideos;
 	}
