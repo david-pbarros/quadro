@@ -237,21 +237,41 @@ public class ReportCommon {
 					}
 					
 					if (designacaoEscola.getNumero() == 1) {
-						dto.setLeitura(designacaoEscola.getTema());
-						dto.setLeitor(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						if ("A".equals(sala)) {
+							dto.setLeitorA(this.nomeAbreviado(designacaoEscola.getEstudante()));
+							
+						} else {
+							dto.setLeitorB(this.nomeAbreviado(designacaoEscola.getEstudante()));
+						}
 						dto.setVideos(TipoDia.VIDEOS == dia.getTipoDia());
 					
 					} else if (designacaoEscola.getNumero() == 2) {
-						dto.setEstVisita(this.nomeAbreviado(designacaoEscola.getEstudante()));
-						dto.setAjuVisita(this.nomeAbreviado(designacaoEscola.getAjudante()));
-					
+						if ("A".equals(sala)) {
+							dto.setEstVisitaA(this.nomeAbreviado(designacaoEscola.getEstudante()));
+							dto.setAjuVisitaA(this.nomeAbreviado(designacaoEscola.getAjudante()));
+							
+						} else {
+							dto.setEstVisitaB(this.nomeAbreviado(designacaoEscola.getEstudante()));
+							dto.setAjuVisitaB(this.nomeAbreviado(designacaoEscola.getAjudante()));
+						}
 					} else if (designacaoEscola.getNumero() == 3) {
-						dto.setEstRevisita(this.nomeAbreviado(designacaoEscola.getEstudante()));
-						dto.setAjuRevisita(this.nomeAbreviado(designacaoEscola.getAjudante()));
-					
+						if ("A".equals(sala)) {
+							dto.setEstRevisitaA(this.nomeAbreviado(designacaoEscola.getEstudante()));
+							dto.setAjuRevisitaA(this.nomeAbreviado(designacaoEscola.getAjudante()));
+						
+						} else {
+							dto.setEstRevisitaB(this.nomeAbreviado(designacaoEscola.getEstudante()));
+							dto.setAjuRevisitaB(this.nomeAbreviado(designacaoEscola.getAjudante()));
+						}
 					} else if (designacaoEscola.getNumero() == 4) {
-						dto.setEstEstudo(this.nomeAbreviado(designacaoEscola.getEstudante()));
-						dto.setAjuEstudo(this.nomeAbreviado(designacaoEscola.getAjudante()));
+						if ("A".equals(sala)) {
+							dto.setEstEstudoA(this.nomeAbreviado(designacaoEscola.getEstudante()));
+							dto.setAjuEstudoA(this.nomeAbreviado(designacaoEscola.getAjudante()));
+							
+						} else {
+							dto.setEstEstudoB(this.nomeAbreviado(designacaoEscola.getEstudante()));
+							dto.setAjuEstudoB(this.nomeAbreviado(designacaoEscola.getAjudante()));
+						}
 					}
 					
 					if (!designacaoes.contains(dto)) {
@@ -261,12 +281,14 @@ public class ReportCommon {
 			}
 		}
 		
-		if ("A".equals(sala)) {
+		this.gerarRelatorio("Escola", new JRBeanCollectionDataSource(designacaoes));
+		
+		/*if ("A".equals(sala)) {
 			this.gerarRelatorio("EscolaA", new JRBeanCollectionDataSource(designacaoes));
 		
 		} else {
 			this.gerarRelatorio("EscolaB", new JRBeanCollectionDataSource(designacaoes));
-		}
+		}*/
 	}
 	
 	public void gerarServico(List<Servico> servicos, Mes mes) {
