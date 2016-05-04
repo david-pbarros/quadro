@@ -53,7 +53,7 @@ public class Gerenciador {
 	}
 	
 	public List<Pessoa> listarPessoas(Genero genero) {
-		Query query = DataBaseHelper.createQuery("FROM Pessoa p WHERE p.genero = :genero")
+		Query query = DataBaseHelper.createQuery("FROM Pessoa p WHERE p.genero = :genero ORDER BY p.nome")
 				.setParameter("genero", genero);
 		
 		return query.getResultList();
