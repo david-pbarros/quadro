@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -16,13 +15,14 @@ import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.DiaReuniao.TipoDia;
 import br.com.dbcorp.quadro.entidades.VidaMinisterio;
+import br.com.dbcorp.quadro.ui.DTextField;
 
 public class SemanaMelhoreAUI extends SemanaMelhoreUI {
 	private static final long serialVersionUID = -8380400006598649332L;
 	
 	protected JLabel lbDesApre;
 	
-	protected JTextField txDesApresent;
+	protected DTextField txDesApresent;
 	
 	public SemanaMelhoreAUI(List<DesignacaoEscola> designacoes, VidaMinisterio vidaMinisterio, DiaReuniao diaReuniao, List<String> homens, List<String> mulheres) {
 		FormLayout layout = new FormLayout(new ColumnSpec[] {
@@ -50,7 +50,7 @@ public class SemanaMelhoreAUI extends SemanaMelhoreUI {
 	protected void inicializar(List<DesignacaoEscola> designacoes, VidaMinisterio vidaMinisterio, DiaReuniao diaReuniao, List<String> homens, List<String> mulheres, FormLayout layout) {
 		this.lbDesApre = new JLabel("Desig. Apresentação:");
 		
-		this.txDesApresent = new JTextField();
+		this.txDesApresent = new DTextField(homens);
 		
 		super.inicializar(designacoes, vidaMinisterio, diaReuniao, homens, mulheres, layout);
 		

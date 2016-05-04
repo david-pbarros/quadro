@@ -18,6 +18,7 @@ import br.com.dbcorp.quadro.Log;
 import br.com.dbcorp.quadro.entidades.DesignacaoEscola;
 import br.com.dbcorp.quadro.entidades.DiaReuniao;
 import br.com.dbcorp.quadro.entidades.Genero;
+import br.com.dbcorp.quadro.entidades.Mes;
 import br.com.dbcorp.quadro.entidades.Pessoa;
 import br.com.dbcorp.quadro.entidades.VidaMinisterio;
 import br.com.dbcorp.quadro.ui.InternalUI;
@@ -41,6 +42,13 @@ public class DesignacaoEscolaGerenciador extends Gerenciador {
 		Query query = DataBaseHelper.createQuery("FROM DesignacaoEscola d JOIN FETCH d.dia dt WHERE dt = :dia AND d.sala = :sala")
 				.setParameter("dia", diaReuniao)
 				.setParameter("sala", sala);
+		
+		return query.getResultList();
+	}
+	
+	public List<DesignacaoEscola> obterDesignacaoPorMes(Mes mes) {
+		Query query = DataBaseHelper.createQuery("SELECT d FROM Mes m INNER JOIN DesignacaoEscola d ON d.dia IN (m.dias) WHERE m.id = :id")
+				.setParameter("id", mes.getId());
 		
 		return query.getResultList();
 	}

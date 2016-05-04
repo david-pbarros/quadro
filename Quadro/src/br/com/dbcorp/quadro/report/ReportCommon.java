@@ -199,6 +199,7 @@ public class ReportCommon {
 		this.prop.put("mes", mes.getMes().name());
 		
 		List<DesignacaoEscolaDTO> designacaoes = new ArrayList<DesignacaoEscolaDTO>();
+		Map<DiaReuniao, DesignacaoEscolaDTO> temp = new HashMap<>();
 		
 		DesignacaoEscolaDTO dto = null;
 		
@@ -208,7 +209,11 @@ public class ReportCommon {
 		
 		for (DiaReuniao dia : mes.getDias()) {
 			if ("S".equalsIgnoreCase(dia.getQuando()) && (TipoDia.ASSEMBLEIA == dia.getTipoDia() || TipoDia.RECAPITULACAO == dia.getTipoDia() || TipoDia.VISITA == dia.getTipoDia() || TipoDia.VIDEOS == dia.getTipoDia())) {
-				dto = this.criaDesignacaoEscola(dia, sala, vidaMinisterios);
+				if (!temp.containsKey(dia)) {
+					temp.put(dia, this.criaDesignacaoEscola(dia, sala, vidaMinisterios));
+				}
+				
+				dto = temp.get(dia);
 				
 				if (TipoDia.ASSEMBLEIA == dia.getTipoDia()) {
 					if (tpEspecial == null) {
@@ -233,11 +238,13 @@ public class ReportCommon {
 			for (DesignacaoEscola designacaoEscola : designacaoesEscola) {
 				if (designacaoEscola.getDia().equals(dia)) {
 					if (dto == null || !dto.getDataReuniao().equals(designacaoEscola.getDia().getDia())) {
-						dto = this.criaDesignacaoEscola(dia, sala, vidaMinisterios);
+						temp.put(dia, this.criaDesignacaoEscola(dia, sala, vidaMinisterios));
 					}
 					
+					dto = temp.get(dia);
+					
 					if (designacaoEscola.getNumero() == 1) {
-						if ("A".equals(sala)) {
+						if ("A".equals(designacaoEscola.getSala())) {
 							dto.setLeitorA(this.nomeAbreviado(designacaoEscola.getEstudante()));
 							
 						} else {
@@ -246,7 +253,7 @@ public class ReportCommon {
 						dto.setVideos(TipoDia.VIDEOS == dia.getTipoDia());
 					
 					} else if (designacaoEscola.getNumero() == 2) {
-						if ("A".equals(sala)) {
+						if ("A".equals(designacaoEscola.getSala())) {
 							dto.setEstVisitaA(this.nomeAbreviado(designacaoEscola.getEstudante()));
 							dto.setAjuVisitaA(this.nomeAbreviado(designacaoEscola.getAjudante()));
 							
@@ -255,7 +262,7 @@ public class ReportCommon {
 							dto.setAjuVisitaB(this.nomeAbreviado(designacaoEscola.getAjudante()));
 						}
 					} else if (designacaoEscola.getNumero() == 3) {
-						if ("A".equals(sala)) {
+						if ("A".equals(designacaoEscola.getSala())) {
 							dto.setEstRevisitaA(this.nomeAbreviado(designacaoEscola.getEstudante()));
 							dto.setAjuRevisitaA(this.nomeAbreviado(designacaoEscola.getAjudante()));
 						
@@ -264,7 +271,7 @@ public class ReportCommon {
 							dto.setAjuRevisitaB(this.nomeAbreviado(designacaoEscola.getAjudante()));
 						}
 					} else if (designacaoEscola.getNumero() == 4) {
-						if ("A".equals(sala)) {
+						if ("A".equals(designacaoEscola.getSala())) {
 							dto.setEstEstudoA(this.nomeAbreviado(designacaoEscola.getEstudante()));
 							dto.setAjuEstudoA(this.nomeAbreviado(designacaoEscola.getAjudante()));
 							
@@ -282,13 +289,6 @@ public class ReportCommon {
 		}
 		
 		this.gerarRelatorio("Escola", new JRBeanCollectionDataSource(designacaoes));
-		
-		/*if ("A".equals(sala)) {
-			this.gerarRelatorio("EscolaA", new JRBeanCollectionDataSource(designacaoes));
-		
-		} else {
-			this.gerarRelatorio("EscolaB", new JRBeanCollectionDataSource(designacaoes));
-		}*/
 	}
 	
 	public void gerarServico(List<Servico> servicos, Mes mes) {

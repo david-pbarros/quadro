@@ -316,6 +316,6 @@ public class DesignacoesUI extends InternalUI implements ActionListener, ItemLis
 	}
 	
 	private void imprimir() {
-		ReportCommon.getInstance().gerarEscola(this.designacaoes, this.mesDesignacao, (String) this.cbSala.getSelectedItem(), this.vidaMinisterios);
+		ReportCommon.getInstance().gerarEscola(this.gerenciador.obterDesignacaoPorMes(this.mesDesignacao), this.mesDesignacao, (String) this.cbSala.getSelectedItem(), this.vidaMinisterios);
 	}
 }
